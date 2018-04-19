@@ -1,0 +1,32 @@
+<div class="container">
+    <h1 class="my-5">Update Cheese</h1>
+
+  <!-- START of card -->
+  <div class="card">
+    <div class="card-body">
+      <form action="/cheese/update" method="POST">
+        <!-- NOTE: uncomment input when you're working on the API  and add the EJS-->
+        <!-- <input name="id" value="" type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
+
+        <div class="form-group">
+          <label class='my-label my-2 p-2' for="cheese-edit-name">Cheese Name</label>
+          <input required name="name" value="" type="text" class="form-control" id="cheese-edit-name" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label class='my-label my-2 p-2' for="cheese-edit-description">Description</label>
+            <textarea required name="description" value="" type="text" class="form-control edit-description" id="cheese-edit-description" placeholder="Enter a description for this cheese"></textarea>
+        </div>
+        <div class="mt-5 mb-3">
+          <button type="submit" class="btn btn-warning">Update</button>
+          <button  class="btn btn-danger">Archive Record</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <!-- END of card -->
+
+</div>
+
+<!-- START of card -->
+<!-- END of card -->

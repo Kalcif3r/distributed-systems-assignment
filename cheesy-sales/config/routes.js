@@ -34,6 +34,11 @@ module.exports.routes = {
   'GET /account/password':   { action: 'account/view-change-password' },
   'GET /account/profile':    { action: 'account/view-edit-profile' },
 
+  // CHEESE ACTIONS
+  'GET /Cheese':                                    { action: 'cheese/view-all' },
+  'POST /Cheese/add':                               { action: 'cheese/add-action' },
+  'GET /Cheese/update-view/:cheeseID':            { action: 'cheese/update-view' },
+
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
