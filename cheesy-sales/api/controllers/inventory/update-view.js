@@ -2,16 +2,16 @@ module.exports = {
 
   // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
 
-  friendlyName: 'View all cheese',
+  friendlyName: 'View Update page for this inventory',
 
 
-  description: 'Display "cheese" page.',
+  description: 'Display "Update inventory" page.',
 
 
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/cheese/view-all',
+      viewTemplatePath: 'pages/inventory/update-view',
     }
 
   },

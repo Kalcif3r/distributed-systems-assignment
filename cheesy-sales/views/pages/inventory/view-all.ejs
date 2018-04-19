@@ -1,0 +1,135 @@
+<div class="container">
+  <h1 class="my-5">Inventory</h1>
+
+<!-- START of card -->
+  <div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-success mb-3 " data-toggle="modal" data-target="#add-inventory" type="button" name="button">Create a New Inventory Record</button>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Factory Name</th>
+          <th scope="col">Cheese Name</th>
+          <th scope="col">Quantity Remaining</th>
+          <th scope="col">Initial Stock</th>
+          <th scope="col">Manufacturing Cost</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Goa</td>
+          <td>Mozzarella</td>
+          <td>20</td>
+          <td>100</td>
+          <td>2000</td>
+          <td><a href="/inventory/update-view/1"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Goa</td>
+          <td>Blue Cheese</td>
+          <td>15</td>
+          <td>40</td>
+          <td>3000</td>
+          <td><a href="#"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>India</td>
+          <td>Gouda</td>
+          <td>24</td>
+          <td>120</td>
+          <td>1200</td>
+          <td><a href="#"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- END of card -->
+
+<!-- START of myModal -->
+<div id="add-inventory" class="modal" tabindex="-1" role="dialog">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Add in a new type of Inventory</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <form action="inventory/add-action" method="POST">
+
+          <!-- START of Searchable Dropdown FOR FactoryID -->
+          <div class="form-group">
+            <label for="inventory-view-factoryID">Factory</label>
+            <div class="ui fluid search selection dropdown">
+              <input required value="" type="hidden" name="factoryID" id="inventory-view-factoryID" >
+              <i class="dropdown icon"></i>
+              <div class="default text">Select a Factory</div>
+              <div class="menu">
+                <div class="item" data-value="Goa"> Goa</div>
+                <div class="item" data-value="India"> India</div>
+                <div class="item" data-value="Venezuela"> Venezuela</div>
+              </div>
+            </div>
+          </div>
+          <!-- END of Searchable Dropdown -->
+
+          <!-- START of Searchable Dropdown FOR CheeseID -->
+          <div class="form-group">
+            <label for="inventory-view-cheeseID">Cheese Type</label>
+            <div class="ui fluid search selection dropdown">
+              <input required value="" type="hidden" name="cheeseID" id="inventory-view-cheeseID" >
+              <i class="dropdown icon"></i>
+              <div class="default text">Select a Cheese Type</div>
+              <div class="menu">
+                <div class="item" data-value="Blue Cheese"> Blue Cheese</div>
+                <div class="item" data-value="Gouda"> Gouda</div>
+                <div class="item" data-value="Mozzarella"> Mozzarella</div>
+              </div>
+            </div>
+          </div>
+          <!-- END of Searchable Dropdown -->
+
+
+          <div class="form-group">
+            <label for="inventory-view-quantity-initial">Initial Quantity</label>
+            <input required name="quantityIntiial"  type="number" class="form-control" id="inventory-view-quantity-initial" placeholder="Enter how much stock you're adding to stock"></input>
+          </div>
+
+          <div class="form-group">
+            <label for="inventory-view-quantity-remaining">Remaining Quantity</label>
+            <input required name="quantityRemaining"  type="number" class="form-control" id="inventory-view-quantity-remaining" placeholder="Enter how much stock is remaining"></input>
+          </div>
+
+          <div class="form-group">
+            <label for="inventory-view-manufacturing-cost">Manufacturing Cost</label>
+            <input required name="manufacturigCost"  type="number" class="form-control" id="inventory-view-manufacturing-cost" placeholder="Enter the cost of production for this batch"></input>
+          </div>
+
+
+          <!-- END of container -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Submit New Record</button>
+          <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+  </div>
+</div>
+</div>
+<!-- END of myModal -->
+</div>
+
+<!-- START of card -->
+<!-- END of card -->

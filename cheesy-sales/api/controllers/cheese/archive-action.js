@@ -1,17 +1,17 @@
 module.exports = {
 
-  // FIXME: NEED TO UPDATE ADD ACTION LATER
+  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
 
-  friendlyName: 'Archive this Cheese',
+  friendlyName: 'Archive this cheese',
 
 
-  description: 'Return cheese once its archived',
+  description: 'Archive a cheese and returns tp /cheese once it Archives',
 
 
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/cheese',
+      viewTemplatePath: 'pages/cheese/view-all',
     }
 
   },
