@@ -71,7 +71,9 @@ var jsFilesToInject = [
   'dependencies/jquery.min.js',
   'dependencies/vue.js',
   'dependencies/bootstrap-4/popper.js',
+  'dependencies/parasails.js',
   'dependencies/**/*.js',
+  'dependencies/semantic.min.js',
 
   // First amongst the app-level files, bring in cloud configuration
   'js/cloud.setup.js',
