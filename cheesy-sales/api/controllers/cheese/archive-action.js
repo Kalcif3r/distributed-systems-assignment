@@ -2,10 +2,10 @@ module.exports = {
 
   // FIXME: NEED TO UPDATE ADD ACTION LATER
 
-  friendlyName: 'Update this Cheese',
+  friendlyName: 'Archive this Cheese',
 
 
-  description: 'Display "Update Cheese" page.',
+  description: 'Return cheese once its archived',
 
 
   exits: {

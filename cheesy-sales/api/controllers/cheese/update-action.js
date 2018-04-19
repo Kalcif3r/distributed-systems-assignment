@@ -5,7 +5,7 @@ module.exports = {
   friendlyName: 'Update this Cheese',
 
 
-  description: 'Display "Update Cheese" page.',
+  description: 'Post action for "Update Cheese" page.',
 
 
   exits: {
