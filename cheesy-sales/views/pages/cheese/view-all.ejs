@@ -1,0 +1,80 @@
+<div class="container">
+  <h1 class="my-5">All Cheese</h1>
+
+<!-- START of card -->
+  <div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary mb-3 " data-toggle="modal" data-target="#add-cheese" type="button" name="button">Create new</button>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Cheese Name</th>
+          <th scope="col">Description</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td><a href="/cheese/update-view/1"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td><a href="#"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td><a href="#"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- END of card -->
+
+<!-- START of myModal -->
+<div id="add-cheese" class="modal" tabindex="-1" role="dialog">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Add in a new type of Cheese</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <form action="cheese/add-action" method="POST">
+          <div class="form-group">
+            <label for="cheese-view-name">Name</label>
+            <input required name="name" type="text" class="form-control" id="cheese-view-name" aria-describedby="emailHelp" placeholder="Enter Cheese Name">
+          </div>
+          <div class="form-group">
+            <label for="cheese-view-description">Description</label>
+            <textarea required name="description"  type="text" class="form-control edit-description" id="cheese-view-description" placeholder="Enter a description for this cheese"></textarea>
+          </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Create New</button>
+          <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+  </div>
+</div>
+</div>
+<!-- END of myModal -->
+</div>
+
+<!-- START of card -->
+<!-- END of card -->
