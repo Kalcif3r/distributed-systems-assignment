@@ -38,8 +38,8 @@ module.exports.routes = {
   'GET /Cheese':                                    { action: 'cheese/view-all' },
   'POST /Cheese/add':                               { action: 'cheese/add-action' },
   'GET /Cheese/update-view/:cheeseID':            { action: 'cheese/update-view' },
-  'POST /Cheese/update':                               { action: '/cheese/update-action' },
-  'POST /Cheese/archive':                               { action: '/cheese/archive-action' },
+  'POST /Cheese/update':                               { action: 'cheese/update-action' },
+  'POST /Cheese/archive':                               { action: 'cheese/archive-action' },
 
 
   // Factory ACTIONS
