@@ -1,11 +1,11 @@
 module.exports = {
 
-  // FIXME: NEED TO UPDATE ADD ACTION LATER
+  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
 
-  friendlyName: 'Update this Factory',
+  friendlyName: 'Create this factory',
 
 
-  description: 'Display "Update Factory" page.',
+  description: 'Creates a factory and returns to /factory once it Creates',
 
 
   exits: {

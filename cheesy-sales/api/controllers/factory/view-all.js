@@ -1,10 +1,11 @@
 module.exports = {
 
+  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
 
-  friendlyName: 'View all Factory',
+  friendlyName: 'View all factory',
 
 
-  description: 'Display "Factory" page.',
+  description: 'Display "factory" page.',
 
 
   exits: {

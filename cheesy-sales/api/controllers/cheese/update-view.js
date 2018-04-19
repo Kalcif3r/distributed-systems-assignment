@@ -2,10 +2,10 @@ module.exports = {
 
   // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
 
-  friendlyName: 'View Update page for this cheese',
+  friendlyName: 'Update this cheese',
 
 
-  description: 'Display "Update cheese" page.',
+  description: 'Update a cheese and returns tp /cheese once it Updates',
 
 
   exits: {

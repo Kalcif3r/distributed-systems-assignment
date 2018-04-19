@@ -41,13 +41,13 @@ module.exports.routes = {
   'POST  /Cheese/update':                             { action: 'cheese/update-action' },
   'POST  /Cheese/archive':                            { action: 'cheese/archive-action' },
 
+  // FACTORY ACTIONS
+  'GET   /Factory':                                   { action: 'factory/view-all' },
+  'POST  /Factory/add':                               { action: 'factory/add-action' },
+  'GET   /Factory/update-view/:factoryID':            { action: 'factory/update-view' },
+  'POST  /Factory/update':                            { action: 'factory/update-action' },
+  'POST  /Factory/archive':                           { action: 'factory/archive-action' },
 
-  // Factory ACTIONS
-  'GET /Factory':                                    { action: 'factory/view-all' },
-  'POST /Factory/add':                               { action: 'factory/add-action' },
-  'GET /Factory/update-view/:factoryID':            { action: 'factory/update-view' },
-  'POST /Factory/update':                               { action: 'factory/update-action' },
-  'POST /Factory/archive':                               { action: 'factory/archive-action' },
   // INVENTORY ACTIONS
   'GET   /Inventory':                                 { action: 'inventory/view-all' },
   'POST  /Inventory/add':                             { action: 'inventory/add-action' },
