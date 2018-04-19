@@ -1,0 +1,80 @@
+<div class="container">
+  <h1 class="my-5">All Factories</h1>
+
+<!-- START of card -->
+  <div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-success mb-3 " data-toggle="modal" data-target="#add-factory" type="button" name="button">Add new factory</button>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Location</th>
+          <th scope="col">Country</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td><a href="/factory/update-view/1"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td><a href="#"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td><a href="#"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- END of card -->
+
+<!-- START of myModal -->
+<div id="add-factory" class="modal" tabindex="-1" role="dialog">
+<div class="modal-dialog " role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Add in a factory</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <form action="factory/add-action" method="POST">
+          <div class="form-group">
+            <label for="factory-view-name">Location</label>
+            <input required name="location" type="text" class="form-control" id="factory-view-location" aria-describedby="emailHelp" placeholder="Enter factory location">
+          </div>
+          <div class="form-group">
+            <label for="factory-view-description">Country</label>
+            <input required name="country"  type="text" class="form-control" id="factory-view-country" placeholder="Enter a country for this factory"></input>
+          </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Add factory</button>
+          <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+  </div>
+</div>
+</div>
+<!-- END of myModal -->
+</div>
+
+<!-- START of card -->
+<!-- END of card -->
