@@ -35,16 +35,19 @@ module.exports.routes = {
   'GET /account/profile':    { action: 'account/view-edit-profile' },
 
   // CHEESE ACTIONS
-  'GET /Cheese':                                    { action: 'cheese/view-all' },
-  'POST /Cheese/add':                               { action: 'cheese/add-action' },
-  'GET /Cheese/update-view/:cheeseID':            { action: 'cheese/update-view' },
-  'POST /Cheese/update':                               { action: 'cheese/update-action' },
-  'POST /Cheese/archive':                               { action: 'cheese/archive-action' },
+  'GET   /Cheese':                                    { action: 'cheese/view-all' },
+  'POST  /Cheese/add':                                { action: 'cheese/add-action' },
+  'GET   /Cheese/update-view/:cheeseID':              { action: 'cheese/update-view' },
+  'POST  /Cheese/update':                             { action: 'cheese/update-action' },
+  'POST  /Cheese/archive':                            { action: 'cheese/archive-action' },
 
 
-  // Factory ACTIONS
-
-
+  // INVENTORY ACTIONS
+  'GET   /Inventory':                                 { action: 'inventory/view-all' },
+  'POST  /Inventory/add':                             { action: 'inventory/add-action' },
+  'GET   /Inventory/update-view/:inventoryID':        { action: 'inventory/update-view' },
+  'POST  /Inventory/update':                          { action: 'inventory/update-action' },
+  'POST  /Inventory/archive':                         { action: 'inventory/archive-action' },
 
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗

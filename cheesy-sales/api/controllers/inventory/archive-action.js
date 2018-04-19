@@ -2,16 +2,16 @@ module.exports = {
 
   // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
 
-  friendlyName: 'View all cheese',
+  friendlyName: 'Archive this inventory',
 
 
-  description: 'Display "cheese" page.',
+  description: 'Archive a inventory and returns tp /inventory once it Archives',
 
 
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/cheese/view-all',
+      viewTemplatePath: 'pages/inventory/view-all',
     }
 
   },

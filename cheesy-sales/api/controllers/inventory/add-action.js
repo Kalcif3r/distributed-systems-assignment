@@ -2,16 +2,16 @@ module.exports = {
 
   // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
 
-  friendlyName: 'View all cheese',
+  friendlyName: 'Create this inventory',
 
 
-  description: 'Display "cheese" page.',
+  description: 'Creates a inventory and returns to /inventory once it Creates',
 
 
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/cheese/view-all',
+      viewTemplatePath: 'pages/inventory/view-all',
     }
 
   },

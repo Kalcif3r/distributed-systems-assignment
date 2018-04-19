@@ -1,17 +1,17 @@
 module.exports = {
 
-  // FIXME: NEED TO UPDATE ADD ACTION LATER
+  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
 
-  friendlyName: 'Update this Cheese',
+  friendlyName: 'Create this cheese',
 
 
-  description: 'Display "Update Cheese" page.',
+  description: 'Creates a cheese and returns to /cheese once it Creates',
 
 
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/cheese',
+      viewTemplatePath: 'pages/cheese/view-all',
     }
 
   },
