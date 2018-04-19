@@ -62,6 +62,10 @@ module.exports.datastores = {
     pool: false,
 
 
+    url: 'mysql://senal:password@192.168.8.101:3366/CheesyDB',
+
+
+
   },
 
 
