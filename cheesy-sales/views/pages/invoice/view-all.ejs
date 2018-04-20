@@ -93,6 +93,7 @@
          <div class="container">
            <div class="row mb-4">
              <input required value="[]" type="hidden" name="invoiceItemsArray" id="invoice-view-invoiceItemsArray" >
+             <input required value="[]" type="hidden" name="invoiceItemsID" id="invoice-view-invoiceItemsID" >
 
              <!-- NOTE:: Only show factory if the user is authenticated to. Double check this on the server side -->
              <div class="col">
@@ -103,9 +104,9 @@
                    <i class="dropdown icon"></i>
                    <div class="default text">Select a Factory</div>
                    <div class="menu">
-                     <div class="item" data-value="Goa"> Goa</div>
-                     <div class="item" data-value="India"> India</div>
-                     <div class="item" data-value="Venezuela"> Venezuela</div>
+                     <div class="item" value="1" data-value="Goa"> Goa</div>
+                     <div class="item" value="2" data-value="India"> India</div>
+                     <div class="item" value="3" data-value="Venezuela"> Venezuela</div>
                    </div>
                  </div>
                </div>
@@ -122,9 +123,9 @@
                    <i class="dropdown icon"></i>
                    <div class="default text">Select a Cheese Type</div>
                    <div class="menu">
-                     <div class="item" data-value="Blue Cheese"> Blue Cheese</div>
-                     <div class="item" data-value="Gouda"> Gouda</div>
-                     <div class="item" data-value="Mozzarella"> Mozzarella</div>
+                     <div class="item" value="1" data-value="Blue Cheese"> Blue Cheese</div>
+                     <div class="item" value="2"data-value="Gouda"> Gouda</div>
+                     <div class="item" value="3"data-value="Mozzarella"> Mozzarella</div>
                    </div>
                  </div>
 

@@ -24,18 +24,34 @@ function addInvoiceItem () {
   if(!errors) {
     // add a new object to the input
     let oldValue = JSON.parse($('#invoice-view-invoiceItemsArray').val())
-    console.log('invoiceItemArrays value old is : '  ,oldValue)
-    let newValue = oldValue.push({
-      factoryID: $('#invoice-view-factoryID').val(),
-      cheeseID: $('#invoice-view-cheeseID').val(),
+    console.log("The Old value that's parsed is:", oldValue)
+    let newValue = {
+      factoryID: $('#invoice-view-factoryID').attr('value'),
+      cheeseID: $('#invoice-view-cheeseID').attr('value'),
       quantity: $('#invoice-view-quantity').val(),
       price: $('#invoice-view-price').val(),
-    })
-    // console.log('invoiceItemArrays new is now : '  ,newValue)
-    // $('#invoice-view-invoiceItemsArray').attr('value',newValue)
-    console.log('invoiceItemArrays value new is : '  , newValue)
-    console.log('invoiceItemArrays value new parsed is : '  , newValue)
+    }
+    console.log("The New value that's created is:", newValue)
+    oldValue.push(newValue)
+    console.log("The New+Old that's created is:", oldValue)
+    $('#invoice-view-invoiceItemsArray').val(JSON.stringify(oldValue))
 
+    console.log("The New+Old that's a var is:",JSON.parse($('#invoice-view-invoiceItemsArray').val()))
+    // let newValue = oldValue.push({
+    //   factoryID: $('#invoice-view-factoryID').val(),
+    //   cheeseID: $('#invoice-view-cheeseID').val(),
+    //   quantity: $('#invoice-view-quantity').val(),
+    //   price: $('#invoice-view-price').val(),
+    // })
+    // console.log('invoiceItemArrays value new is : '  , newValue)
+    // console.log('invoiceItemArrays value new parsed is : '  , newValue)
+  $('#addItemTable-body').append(`
+    <th scope="row"></th>
+    <td>${$('#invoice-view-factoryID').val()}</td>
+    <td>${$('#invoice-view-cheeseID').val()}</td>
+    <td>${$('#invoice-view-quantity').val()}</td>
+    <td>${$('#invoice-view-price').val()}</td>
+    `)
   }
 }
 
