@@ -45,8 +45,17 @@ module.exports = {
 
     let message = "new record created~!"
 
+    let cheeses = Cheese
+    .find()
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
+
+
     return exits.success({
       message: "new record created~!",
+      cheeses: cheeses,
     });
 
   }

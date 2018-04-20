@@ -1,5 +1,7 @@
 <div class="container">
   <h1 class="my-5">All Cheese</h1>
+  <h5 class="modal-title"> <%- message %> </h5>
+  <h5 class="modal-title"> <%- cheeses[0].cheeseName %> </h5>
 
 <!-- START of card -->
   <div class="card">
@@ -17,24 +19,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td><a href="/cheese/update-view/1"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td><a href="#"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td><a href="#"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
-        </tr>
+        <% cheeses.forEach( cheese => { %>
+          <tr>
+            <th scope="row"><%= cheese.id %></th>
+            <td><%- cheese.cheeseName %> </td>
+            <td><%- cheese.cheeseDescription %> </td>
+            <td><a href="/cheese/update-view/<%= cheese.id %>"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+          </tr>
+        <% }) %>
       </tbody>
     </table>
   </div>
@@ -48,7 +40,6 @@
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title">Add in a new type of Cheese</h5>
-      <h5 class="modal-title"> <%- message %> </h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
