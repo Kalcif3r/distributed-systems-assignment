@@ -37,6 +37,10 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     // n/a
 
+    userID: {
+      collection: 'user',
+      via: 'factory',
+    }
 
   },
 

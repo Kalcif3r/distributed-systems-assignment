@@ -179,9 +179,9 @@ email status until they click the link in the confirmation email.`
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     // n/a
 
-    owners: {
-      collection: 'user',
-      via: 'user'
+    factoryID: {
+      collection: 'factory',
+      via: 'user',
     }
 
   },
