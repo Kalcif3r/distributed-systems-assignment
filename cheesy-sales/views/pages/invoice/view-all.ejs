@@ -1,8 +1,8 @@
 <div class="container">
 
-  <div class="invoice-heading  my-5">
+  <div class="invoice-heading mt-1 my-5">
     <h1 class="mt-3">Invoice</h1>
-    <a class='btn-invoice-edit'href="/inventory/update-view/1"><button class="btn btn-success mb-3 mt-3" data-toggle="modal" data-target="#add-inventory" type="button" name="button">Create a New Inventory Record</button></a>
+    <a class='btn-invoice-edit'href="#"><button class="btn btn-success mb-3 mt-3" data-toggle="modal" data-target="#add-invoice" type="button" name="button">Create a New Inventory Record</button></a>
   </div>
 
 <!-- START of card -->
@@ -13,7 +13,9 @@
       <div class="d-flex align-items-center mb-3 ml-3">
         <p>20-04-2018</p>
       </div>
-      <a class='btn-invoice-edit'href="/inventory/update-view/1"><button class="btn btn-primary  float-right mb-3" type="button" name="button">Edit Invoice</button></a>
+      <a class='btn-invoice-edit'href="/invoice/update-view/1">
+        <button class="btn btn-primary  float-right mb-3" type="button" name="button">Edit Invoice</button>
+      </a>
     </div>
     <!-- START of invoice details table -->
     <table class="table table-hover">
@@ -29,22 +31,22 @@
       <tbody>
         <tr>
           <th scope="row">1</th>
-          <td>Goa</td>
           <td>Mozzarella</td>
+          <td>2</td>
           <td>20</td>
           <td>100</td>
         </tr>
         <tr>
           <th scope="row">2</th>
-          <td>Goa</td>
           <td>Blue Cheese</td>
+          <td>2</td>
           <td>15</td>
           <td>40</td>
         </tr>
         <tr>
           <th scope="row">3</th>
-          <td>India</td>
           <td>Gouda</td>
+          <td>3</td>
           <td>24</td>
           <td>120</td>
         </tr>
@@ -75,66 +77,177 @@
 <!-- END of card -->
 
 <!-- START of myModal -->
-<div id="add-inventory" class="modal" tabindex="-1" role="dialog">
-<div class="modal-dialog" role="document">
+<div id="add-invoice" class="modal" tabindex="-1" role="dialog">
+<div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title">Add in a new type of Inventory</h5>
+      <h3 class="modal-title">New Invoice</h3>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
       <div class="container">
-        <form action="inventory/add-action" method="POST">
+        <form action="invoice/add-action" method="POST">
+
+         <div class="container">
+           <div class="row mb-4">
+             <input required value="[]" type="hidden" name="invoiceItemsArray" id="invoice-view-invoiceItemsArray" >
+
+             <!-- NOTE:: Only show factory if the user is authenticated to. Double check this on the server side -->
+             <div class="col">
+               <div class="form-group">
+                 <label for="invoice-view-factoryID">Factory</label>
+                 <div class="ui fluid search selection dropdown">
+                   <input required value="" type="hidden" name="factoryID" id="invoice-view-factoryID" >
+                   <i class="dropdown icon"></i>
+                   <div class="default text">Select a Factory</div>
+                   <div class="menu">
+                     <div class="item" data-value="Goa"> Goa</div>
+                     <div class="item" data-value="India"> India</div>
+                     <div class="item" data-value="Venezuela"> Venezuela</div>
+                   </div>
+                 </div>
+               </div>
+               <div id='invoice-view-factoryID-error' class="invalid-input mb-4 hidden">
+                Please provide a Factory
+              </div>
+             </div>
+
+             <div class="col">
+               <div class="form-group">
+                 <label for="invoice-view-cheeseID">Cheese Type</label>
+                 <div class="ui fluid search selection dropdown">
+                   <input required value="" type="hidden" name="cheeseID" id="invoice-view-cheeseID" >
+                   <i class="dropdown icon"></i>
+                   <div class="default text">Select a Cheese Type</div>
+                   <div class="menu">
+                     <div class="item" data-value="Blue Cheese"> Blue Cheese</div>
+                     <div class="item" data-value="Gouda"> Gouda</div>
+                     <div class="item" data-value="Mozzarella"> Mozzarella</div>
+                   </div>
+                 </div>
+
+               </div>
+               <div id='invoice-view-cheeseID-error' class="invalid-input mb-4 hidden ">
+                Please provide a Cheese Type
+              </div>
+             </div>
+
+             <div class="w-100"></div>
+
+             <div class="col">
+               <div class="form-group">
+                 <label for="invoice-view-quantity-initial">Quantity</label>
+                 <input required value="" name="quantity"  type="number" class="form-control" id="invoice-view-quantity" placeholder="Enter how much stock you're adding to stock"></input>
+               </div>
+               <div id='invoice-view-quantity-error' class="invalid-input mb-4 hidden">
+                Please provide a Quantity
+              </div>
+             </div>
+
+             <div class="col">
+               <div class="form-group">
+                 <label for="invoice-view-quantity-initial">Price</label>
+                 <input required value="" name="Price"  type="number" class="form-control" id="invoice-view-price" placeholder="Enter how much stock you're adding to stock"></input>
+               </div>
+               <div id='invoice-view-price-error' class="invalid-input mb-4 hidden">
+                Please provide a Price
+              </div>
+             </div>
+
+             <div class="w-100"></div>
+
+             <div class="col ">
+               <button onclick="addInvoiceItem()"class=" col btn btn-outline-info mb-3 w-50 mt-3" type="button" name="button">Add Item</button>
+             </div>
+
+             <div class="col"></div>
+
+           </div>
+         </div>
+
+
 
           <!-- START of Searchable Dropdown FOR FactoryID -->
-          <div class="form-group">
-            <label for="inventory-view-factoryID">Factory</label>
-            <div class="ui fluid search selection dropdown">
-              <input required value="" type="hidden" name="factoryID" id="inventory-view-factoryID" >
-              <i class="dropdown icon"></i>
-              <div class="default text">Select a Factory</div>
-              <div class="menu">
-                <div class="item" data-value="Goa"> Goa</div>
-                <div class="item" data-value="India"> India</div>
-                <div class="item" data-value="Venezuela"> Venezuela</div>
-              </div>
-            </div>
-          </div>
+
           <!-- END of Searchable Dropdown -->
 
           <!-- START of Searchable Dropdown FOR CheeseID -->
-          <div class="form-group">
-            <label for="inventory-view-cheeseID">Cheese Type</label>
-            <div class="ui fluid search selection dropdown">
-              <input required value="" type="hidden" name="cheeseID" id="inventory-view-cheeseID" >
-              <i class="dropdown icon"></i>
-              <div class="default text">Select a Cheese Type</div>
-              <div class="menu">
-                <div class="item" data-value="Blue Cheese"> Blue Cheese</div>
-                <div class="item" data-value="Gouda"> Gouda</div>
-                <div class="item" data-value="Mozzarella"> Mozzarella</div>
-              </div>
-            </div>
-          </div>
+
           <!-- END of Searchable Dropdown -->
 
+            <!--PSEUDO FOR CUSTOM COMPONENT
 
-          <div class="form-group">
-            <label for="inventory-view-quantity-initial">Initial Quantity</label>
-            <input required name="quantityIntiial"  type="number" class="form-control" id="inventory-view-quantity-initial" placeholder="Enter how much stock you're adding to stock"></input>
-          </div>
+            - Im going to draw in text what the modal should look like
+              _____________________________________________________
+            - | Factory : Select Factory | Cheese : Select Cheese |
+            - | Qty : Input QTY          | Price : Input Price    |
+            _ _____________________________________________________
+              < ADD ITEM BUTTON >
 
-          <div class="form-group">
-            <label for="inventory-view-quantity-remaining">Remaining Quantity</label>
-            <input required name="quantityRemaining"  type="number" class="form-control" id="inventory-view-quantity-remaining" placeholder="Enter how much stock is remaining"></input>
-          </div>
+            - On Button clicked run addInvoiceItem() function
+            - Takes params. and do Validation
+            - if ( validated )
+              - add param object to invoiceItemsArray
+              - run generateRow( invoiceItemsArray ) function
+            -
 
-          <div class="form-group">
-            <label for="inventory-view-manufacturing-cost">Manufacturing Cost</label>
-            <input required name="manufacturigCost"  type="number" class="form-control" id="inventory-view-manufacturing-cost" placeholder="Enter the cost of production for this batch"></input>
-          </div>
+          -->
+
+          <!-- START of invoice details table -->
+          <table id='addItemTable' class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Cheese Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody id='addItemTable-body'>
+              <tr>
+                <th scope="row">1</th>
+                <td>Goa</td>
+                <td>Mozzarella</td>
+                <td>20</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Goa</td>
+                <td>Blue Cheese</td>
+                <td>15</td>
+                <td>40</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>India</td>
+                <td>Gouda</td>
+                <td>24</td>
+                <td>120</td>
+              </tr>
+            </tbody>
+          </table>
+            <!-- END of invoice details table -->
+            <div class="container">
+              <div class="float-right">
+                <div class="totally row">
+                  <div class="col h5 mr-3">
+                    <div class="row">
+                      <strong>Total</strong>
+                    </div>
+                    <div class="row">
+                      (LKR)
+                    </div>
+                  </div>
+                  <div class="col  h5">
+                    <strong>Rs.10000</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
           <!-- END of container -->

@@ -1,3 +1,45 @@
+function addInvoiceItem () {
+  let errors = false;
+  let itemDetails = [
+    $('#invoice-view-factoryID'),
+    $('#invoice-view-cheeseID'),
+    $('#invoice-view-quantity'),
+    $('#invoice-view-price'),
+  ]
+
+  // check for errors
+  itemDetails.forEach( itemDetail => {
+    let value = itemDetail.val()
+    let errorID = `#${itemDetail.attr('id')}-error`
+    if( value === undefined || value === null || value === '' ) {
+      $(errorID).removeClass('hidden')
+      console.log('fired hidden',errorID)
+      errors = true;
+    } else {
+      $(errorID).addClass('hidden')
+    }
+  })
+
+  // if no errors
+  if(!errors) {
+    // add a new object to the input
+    let oldValue = JSON.parse($('#invoice-view-invoiceItemsArray').val())
+    console.log('invoiceItemArrays value old is : '  ,oldValue)
+    let newValue = oldValue.push({
+      factoryID: $('#invoice-view-factoryID').val(),
+      cheeseID: $('#invoice-view-cheeseID').val(),
+      quantity: $('#invoice-view-quantity').val(),
+      price: $('#invoice-view-price').val(),
+    })
+    // console.log('invoiceItemArrays new is now : '  ,newValue)
+    // $('#invoice-view-invoiceItemsArray').attr('value',newValue)
+    console.log('invoiceItemArrays value new is : '  , newValue)
+    console.log('invoiceItemArrays value new parsed is : '  , newValue)
+
+  }
+}
+
+
 function createProject () {
   $('#create-project')
   .modal('show')
