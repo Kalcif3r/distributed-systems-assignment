@@ -181,7 +181,7 @@ email status until they click the link in the confirmation email.`
 
     factoryID: {
       collection: 'factory',
-      via: 'user',
+      via: 'userID',
     }
 
   },

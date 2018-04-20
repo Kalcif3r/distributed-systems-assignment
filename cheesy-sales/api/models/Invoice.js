@@ -13,7 +13,8 @@ module.exports = {
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
     date: {
-      type: 'date',
+      type: 'string',
+      columnType: 'date',
       required: true,
       description: 'The date of the invoice',
       example: 2018-02-03
@@ -22,7 +23,6 @@ module.exports = {
     total: {
       type: 'number',
       required: true,
-      default: 0,
       description: 'The grand total of the invoice',
       example: 500
     },
@@ -39,9 +39,9 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     // n/a
 
-    //association with InvoiceItems
-    <???>: {
-      modal: 'factory',
+    invoiceItemID: {
+      collection: 'invoiceItems',
+      via: 'invoiceID',
     },
 
   },

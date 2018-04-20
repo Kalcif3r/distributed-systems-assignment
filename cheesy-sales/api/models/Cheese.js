@@ -25,6 +25,11 @@ module.exports = {
       description: 'The cheese made from Tiddies'
     },
 
+    cheesePrice: {
+      type: 'number',
+      description: 'The base price of each cheese type'
+    },
+
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -37,6 +42,10 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     // n/a
 
+    invoiceItemID: {
+      collection: 'invoiceItems',
+      via: 'cheeseID',
+    },
 
   },
 

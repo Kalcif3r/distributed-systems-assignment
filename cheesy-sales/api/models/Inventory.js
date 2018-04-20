@@ -15,7 +15,6 @@ module.exports = {
     stock: {
       type: 'number',
       required: true,
-      default: 0,
       description: 'Remaining stock of a certain cheese type',
       example: 100
     },
@@ -33,16 +32,11 @@ module.exports = {
     // n/a
 
     factoryID: {
-      modal: 'factory',
+      model: 'factory',
     },
 
     cheeseID: {
-      modal: 'cheese',
-    },
-
-    //association with InvoiceItems
-    <???>: {
-      modal: 'cheese',
+      model: 'cheese',
     },
 
   },

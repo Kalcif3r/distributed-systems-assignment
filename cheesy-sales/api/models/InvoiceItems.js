@@ -15,9 +15,15 @@ module.exports = {
     quantity: {
       type: 'number',
       required: true,
-      default: 0,
       description: 'The qty of each item in an invoice',
       example: 5
+    },
+
+    price: {
+      type: 'number',
+      required: true,
+      description: 'The price of each item in an invoice',
+      example: 300
     },
 
     // subtotal: {
@@ -40,16 +46,11 @@ module.exports = {
     // n/a
 
     cheeseID: {
-      modal: 'cheese',
+      model: 'cheese',
     },
 
     invoiceID: {
-      modal: 'invoice',
-    },
-
-    //WTF ARE WE DOING HERE!?
-    invetory: {
-      modal: 'invetory'
+      model: 'invoice',
     },
 
   },

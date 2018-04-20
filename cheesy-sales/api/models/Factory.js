@@ -39,7 +39,7 @@ module.exports = {
 
     userID: {
       collection: 'user',
-      via: 'factory',
+      via: 'factoryID',
     }
 
   },
