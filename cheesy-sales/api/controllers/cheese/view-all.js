@@ -19,7 +19,18 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    return exits.success();
+    let cheeses = await Cheese
+    .find()
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
+
+
+    return exits.success({
+      message:'',
+      cheeses: cheeses,
+    });
 
   }
 
