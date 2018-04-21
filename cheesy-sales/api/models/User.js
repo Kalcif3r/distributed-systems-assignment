@@ -55,6 +55,28 @@ by a large team, those administrative features might be split across a few diffe
 So, while this \`isSuperAdmin\` demarcation might not be the right approach forever, it's a good place to start.`
     },
 
+    isSalesPerson: {
+      type: 'boolean',
+      description: 'boolean for checking the user permissions',
+    },
+
+    isStockPerson: {
+      type: 'boolean',
+      description: 'boolean for checking the user permissions',
+    },
+
+    isManager: {
+      type: 'boolean',
+      description: 'boolean for checking the user permissions',
+    },
+
+    isDeleted: {
+      type: 'boolean',
+      defaultsTo: false,
+      description: 'Signifies if this record deleted by the user',
+      extendedDescription: 'This is useful since we can\'t actually delete records on user\'s \'delete\' command. If a record that acts as a foreign key gets deleted, It\'ll throw an error in the other side of the connection.',
+    },
+
     passwordResetToken: {
       type: 'string',
       description: 'A unique token used to verify the user\'s identity when recovering a password.  Expires after 1 use, or after a set amount of time has elapsed.'
@@ -163,6 +185,11 @@ email status until they click the link in the confirmation email.`
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     // n/a
+
+    factoryID: {
+      collection: 'factory',
+      via: 'userID',
+    }
 
   },
 

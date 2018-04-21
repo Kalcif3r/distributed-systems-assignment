@@ -12,22 +12,17 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
-    cheeseName: {
+    factoryLocation: {
       type: 'string',
       required: true,
       description: 'Full representation of the Cheese name',
       example: 'Tiddy Cheese'
     },
 
-    cheeseDescription: {
+    factoryCountry: {
       type: 'string',
       required: true,
       description: 'The cheese made from Tiddies'
-    },
-
-    cheesePrice: {
-      type: 'number',
-      description: 'The base price of each cheese type'
     },
 
     isDeleted: {
@@ -48,6 +43,11 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     // n/a
+
+    userID: {
+      collection: 'user',
+      via: 'factoryID',
+    }
 
   },
 

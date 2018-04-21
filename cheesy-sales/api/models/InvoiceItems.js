@@ -12,22 +12,18 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
-    cheeseName: {
-      type: 'string',
-      required: true,
-      description: 'Full representation of the Cheese name',
-      example: 'Tiddy Cheese'
-    },
-
-    cheeseDescription: {
-      type: 'string',
-      required: true,
-      description: 'The cheese made from Tiddies'
-    },
-
-    cheesePrice: {
+    quantity: {
       type: 'number',
-      description: 'The base price of each cheese type'
+      required: true,
+      description: 'The qty of each item in an invoice',
+      example: 5
+    },
+
+    price: {
+      type: 'number',
+      required: true,
+      description: 'The price of each item in an invoice',
+      example: 300
     },
 
     isDeleted: {
@@ -37,6 +33,13 @@ module.exports = {
       extendedDescription: 'This is useful since we can\'t actually delete records on user\'s \'delete\' command. If a record that acts as a foreign key gets deleted, It\'ll throw an error in the other side of the connection.',
     },
 
+    // subtotal: {
+    //   type: 'number',
+    //   required: true,
+    //   default: 0,
+    //   description: 'The subtotal of each item in an invoice(calculated from qty*cheese.price)',
+    //   example: 500
+    // }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -48,6 +51,14 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     // n/a
+
+    cheeseID: {
+      model: 'cheese',
+    },
+
+    invoiceID: {
+      model: 'invoice',
+    },
 
   },
 

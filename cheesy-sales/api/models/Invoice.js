@@ -12,22 +12,19 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
-    cheeseName: {
+    date: {
       type: 'string',
+      columnType: 'date',
       required: true,
-      description: 'Full representation of the Cheese name',
-      example: 'Tiddy Cheese'
+      description: 'The date of the invoice',
+      example: 2018-02-03
     },
 
-    cheeseDescription: {
-      type: 'string',
-      required: true,
-      description: 'The cheese made from Tiddies'
-    },
-
-    cheesePrice: {
+    total: {
       type: 'number',
-      description: 'The base price of each cheese type'
+      required: true,
+      description: 'The grand total of the invoice',
+      example: 500
     },
 
     isDeleted: {
@@ -48,6 +45,11 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     // n/a
+
+    invoiceItemID: {
+      collection: 'invoiceItems',
+      via: 'invoiceID',
+    },
 
   },
 
