@@ -22,6 +22,16 @@ module.exports = {
       required: true,
     },
 
+    cheesePrice: {
+      type: 'number',
+      required : true,
+    },
+
+    isDeleted: {
+      type: 'boolean',
+      defaultsTo: false,
+      required : true,
+    },
   },
 
   exits: {
@@ -43,7 +53,7 @@ module.exports = {
       return err;
     })
 
-    let message = "new record created~!"
+    let message = "new record succesfully created~!"
 
     let cheeses = await Cheese
     .find()
