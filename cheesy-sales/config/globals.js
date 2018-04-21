@@ -33,6 +33,16 @@ module.exports.globals = {
 
   /****************************************************************************
   *                                                                           *
+  * Whether to expose the locally-installed `async` as a global variable      *
+  * (`async`), making it accessible throughout your app.                      *
+  * (See the link above for help.)                                            *
+  *                                                                           *
+  ****************************************************************************/
+
+  unirest: require('unirest'),
+
+  /****************************************************************************
+  *                                                                           *
   * Whether to expose each of your app's models as global variables.          *
   * (See the link at the top of this file for more information.)              *
   *                                                                           *
