@@ -21,7 +21,7 @@ module.exports = {
 
     let factories = await Factory
     .find({
-      where :{isDeleted:false}
+      where:{isDeleted:false}
     })
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message

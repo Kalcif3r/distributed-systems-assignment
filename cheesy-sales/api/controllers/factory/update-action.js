@@ -44,7 +44,9 @@ module.exports = {
 
 
     let factories = await Factory
-    .find()
+    .find({
+      where:{isDeleted:false}
+    })
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;
