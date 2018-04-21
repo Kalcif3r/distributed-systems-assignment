@@ -19,11 +19,18 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
+    let factories = await Factory
+    .find()
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
 
 
 
     return exits.success({
       message:'',
+      factories: factories,
     });
 
   }

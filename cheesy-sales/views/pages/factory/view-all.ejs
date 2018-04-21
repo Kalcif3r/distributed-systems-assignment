@@ -18,14 +18,14 @@
         </tr>
       </thead>
       <tbody>
-
-
+        <% factories.forEach( factory =>{ %>
           <tr>
-            <th scope="row"></th>
-            <td>Factory 1</td>
-            <td>fjefjkefjekf</td>
-            <td><a href="/factory/update-view/1"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+            <th scope="row"><%= factory.id %></th>
+            <td><%- factory.factoryLocation %> </td>
+            <td><%- factory.factoryCountry %> </td>
+            <td><a href="/factory/update-view/<%= factory.id %>"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
           </tr>
+        <% }) %>
 
       </tbody>
     </table>
