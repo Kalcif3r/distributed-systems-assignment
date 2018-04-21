@@ -43,7 +43,7 @@ module.exports.routes = {
 
   // FACTORY ACTIONS
   'GET   /Factory':                                   { action: 'factory/view-all' },
-  'POST  /Factory/-action':                               { action: 'factory/add-action' },
+  'POST  /Factory/add-action':                               { action: 'factory/add-action' },
   'GET   /Factory/update-view/:factoryID':            { action: 'factory/update-view' },
   'POST  /Factory/update-action':                            { action: 'factory/update-action' },
   'POST  /Factory/archive-action':                           { action: 'factory/archive-action' },

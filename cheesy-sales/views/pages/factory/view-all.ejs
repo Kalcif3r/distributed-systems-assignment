@@ -1,5 +1,6 @@
 <div class="container">
   <h1 class="my-5">All Factories</h1>
+  <h5 class="modal-title"> <%- message %> </h5>
 
 <!-- START of card -->
   <div class="card">
@@ -17,24 +18,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td><a href="/factory/update-view/1"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td><a href="#"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td><a href="#"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
-        </tr>
+
+
+          <tr>
+            <th scope="row"></th>
+            <td>Factory 1</td>
+            <td>fjefjkefjekf</td>
+            <td><a href="/factory/update-view/1"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+          </tr>
+
       </tbody>
     </table>
   </div>
@@ -57,11 +49,11 @@
         <form action="factory/add-action" method="POST">
           <div class="form-group">
             <label for="factory-view-name">Location</label>
-            <input required name="location" type="text" class="form-control" id="factory-view-location" aria-describedby="emailHelp" placeholder="Enter factory location">
+            <input required name="factoryLocation" type="text" class="form-control" id="factory-view-location" aria-describedby="emailHelp" placeholder="Enter factory location">
           </div>
           <div class="form-group">
             <label for="factory-view-description">Country</label>
-            <input required name="country"  type="text" class="form-control" id="factory-view-country" placeholder="Enter a country for this factory"></input>
+            <input required name="factoryCountry"  type="text" class="form-control" id="factory-view-country" placeholder="Enter a country for this factory"></input>
           </div>
           </div>
         </div>
