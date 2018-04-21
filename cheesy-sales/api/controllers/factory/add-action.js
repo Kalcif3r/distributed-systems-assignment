@@ -43,7 +43,9 @@ module.exports = {
     let message = "Factory successfully added"
 
     let factories = await Factory
-    .find()
+    .find({
+      where :{isDeleted:false}
+    })
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;

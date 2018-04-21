@@ -16,15 +16,15 @@
           <label class='my-label my-2 p-2' for="cheese-edit-description">Country</label>
             <input required name="factoryCountry" value="<%= factory.factoryCountry %>" type="text" class="form-control " id="cheese-edit-country" placeholder="Enter a country for the factory"></input>
         </div>
-        <div class="mt-5 mb-3">
-          <button type="submit" class="btn btn-primary">Update</button>
-          <form action="/factory/archive" method="POST">
-            <!-- <input name="id" value="" type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
-            <button type="submit" class="btn btn-danger">Archive Record</button>
-          </form>
-        </div>
 
       </form>
+      <div class=" row container mt-5 mb-3">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <form action="/factory/archive-action" method="POST">
+          <input name="id" value="<%= factory.id %>" type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <button type="submit" class=" ml-1 btn btn-danger">Archive Record</button>
+        </form>
+      </div>
     </div>
   </div>
   <!-- END of card -->
