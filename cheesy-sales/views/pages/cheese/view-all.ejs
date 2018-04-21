@@ -15,7 +15,7 @@
           <th scope="col">Cheese Name</th>
           <th scope="col">Description</th>
           <th scope="col">Cheese Price</th>
-          <th scope="col">is Deleted?</th>
+          <!-- <th scope="col">is Deleted?</th> -->
           <th scope="col"></th>
         </tr>
       </thead>
@@ -26,7 +26,7 @@
             <td><%- cheese.cheeseName %> </td>
             <td><%- cheese.cheeseDescription %> </td>
             <td><%- cheese.cheesePrice %> </td>
-            <td><%- cheese.isDeleted %> </td>
+            <!-- <td><%- cheese.isDeleted %> </td> -->
             <td><a href="/cheese/update-view/<%= cheese.id %>"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
           </tr>
         <% }) %>
@@ -62,10 +62,7 @@
             <label for="cheese-view-name">Cheese Price</label>
             <input required name="cheesePrice" type="text" class="form-control" id="cheese-view-price" aria-describedby="emailHelp" placeholder="Enter Cheese Price">
           </div>
-          <div class="form-group">
-            <label for="cheese-view-name">Is Deleted</label>
-            <input required name="isDeleted" type="text" class="form-control" id="cheese-view-isdeleted" aria-describedby="emailHelp" placeholder="False">
-          </div>
+          
           </div>
         </div>
         <div class="modal-footer">

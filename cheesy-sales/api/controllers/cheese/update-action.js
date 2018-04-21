@@ -24,6 +24,16 @@ module.exports = {
       required: true,
     },
 
+    cheesePrice: {
+      type: 'number',
+      required : true,
+    },
+
+    isDeleted: {
+      type: 'boolean',
+      defaultsTo: false,
+
+    },
   },
 
   exits: {
@@ -40,9 +50,13 @@ module.exports = {
     await Cheese
     .update(inputs.id)
     .set(inputs)
+
 sails.log(inputs)
+
     let cheeses = await Cheese
-    .find()
+    .find({
+      where: {isDeleted: false}
+    })
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;

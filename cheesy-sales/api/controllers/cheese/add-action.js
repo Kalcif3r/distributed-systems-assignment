@@ -27,11 +27,7 @@ module.exports = {
       required : true,
     },
 
-    isDeleted: {
-      type: 'boolean',
-      defaultsTo: false,
-      required : true,
-    },
+
   },
 
   exits: {
@@ -56,7 +52,9 @@ module.exports = {
     let message = "new record succesfully created~!"
 
     let cheeses = await Cheese
-    .find()
+    .find({
+      where: {isDeleted: false}
+    })
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;
