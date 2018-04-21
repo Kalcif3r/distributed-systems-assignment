@@ -45,12 +45,14 @@ module.exports = {
 
     let message = "new record created~!"
 
-    let cheeses = Cheese
+    let cheeses = await Cheese
     .find()
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;
     })
+
+sails.log('cheeses are kkkk',cheeses)
 
 
     return exits.success({

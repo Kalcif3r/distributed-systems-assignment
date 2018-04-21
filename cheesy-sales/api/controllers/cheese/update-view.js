@@ -19,7 +19,13 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    return exits.success();
+    let cheeseID = this.req.params.cheeseID
+
+    let cheese = await Cheese.findOne(cheeseID)
+
+    return exits.success({
+      cheese: cheese,
+    });
 
   }
 

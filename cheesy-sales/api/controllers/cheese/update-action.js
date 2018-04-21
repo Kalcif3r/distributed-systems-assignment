@@ -7,6 +7,24 @@ module.exports = {
 
   description: 'Update a cheese and returns tp /cheese once it Updates',
 
+  inputs: {
+
+    id: {
+      type: 'number',
+      required: true,
+    },
+
+    cheeseName: {
+      type: 'string',
+      required: true,
+    },
+
+    cheeseDescription: {
+      type: 'string',
+      required: true,
+    },
+
+  },
 
   exits: {
 
@@ -19,7 +37,21 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    return exits.success();
+    await Cheese
+    .update(inputs.id)
+    .set(inputs)
+sails.log(inputs)
+    let cheeses = await Cheese
+    .find()
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
+
+    return exits.success({
+      message:'cheese has been updated',
+      cheeses: cheeses,
+    }); exits.success();
 
   }
 

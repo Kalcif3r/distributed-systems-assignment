@@ -38,22 +38,22 @@ module.exports.routes = {
   'GET   /Cheese':                                    { action: 'cheese/view-all' },
   'POST  /Cheese/add-action':                                { action: 'cheese/add-action' },
   'GET   /Cheese/update-view/:cheeseID':              { action: 'cheese/update-view' },
-  'POST  /Cheese/update':                             { action: 'cheese/update-action' },
-  'POST  /Cheese/archive':                            { action: 'cheese/archive-action' },
+  'POST  /Cheese/update-action':                             { action: 'cheese/update-action' },
+  'POST  /Cheese/archive-action':                            { action: 'cheese/archive-action' },
 
   // FACTORY ACTIONS
   'GET   /Factory':                                   { action: 'factory/view-all' },
-  'POST  /Factory/add':                               { action: 'factory/add-action' },
+  'POST  /Factory/-action':                               { action: 'factory/add-action' },
   'GET   /Factory/update-view/:factoryID':            { action: 'factory/update-view' },
-  'POST  /Factory/update':                            { action: 'factory/update-action' },
-  'POST  /Factory/archive':                           { action: 'factory/archive-action' },
+  'POST  /Factory/update-action':                            { action: 'factory/update-action' },
+  'POST  /Factory/archive-action':                           { action: 'factory/archive-action' },
 
   // INVENTORY ACTIONS
   'GET   /Inventory':                                 { action: 'inventory/view-all' },
-  'POST  /Inventory/add':                             { action: 'inventory/add-action' },
+  'POST  /Inventory/add-action':                             { action: 'inventory/add-action' },
   'GET   /Inventory/update-view/:inventoryID':        { action: 'inventory/update-view' },
-  'POST  /Inventory/update':                          { action: 'inventory/update-action' },
-  'POST  /Inventory/archive':                         { action: 'inventory/archive-action' },
+  'POST  /Inventory/update-action':                          { action: 'inventory/update-action' },
+  'POST  /Inventory/archive-action':                         { action: 'inventory/archive-action' },
 
 
 
