@@ -7,6 +7,14 @@ module.exports = {
 
   description: 'Archive a inventory and returns tp /inventory once it Archives',
 
+  inputs: {
+
+    id: {
+      type: 'number',
+      required: true,
+    },
+
+  },
 
   exits: {
 
@@ -19,7 +27,42 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    return exits.success();
+    // archive the object
+    await Inventory
+    .update(inputs.id)
+    .set({
+      isDeleted: true,
+    })
+
+    // return all non-deleted inventory items
+    let inventory = await Inventory
+    .find({
+      where: {isDeleted: false}
+    })
+    .populate('factoryID')
+    .populate('cheeseID')
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
+
+    // return all factories and cheeses for the dropdowns to process
+    let factories = await Factory
+    .find({
+      where: {isDeleted: false}
+    })
+
+    let cheeses = await Cheese
+    .find({
+      where: {isDeleted: false}
+    })
+
+    return exits.success({
+      message: 'record deleted~!',
+      inventory: inventory,
+      factories: factories,
+      cheeses: cheeses,
+    });
 
   }
 

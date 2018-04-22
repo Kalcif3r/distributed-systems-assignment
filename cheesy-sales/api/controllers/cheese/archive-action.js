@@ -27,13 +27,14 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    sails.log(inputs)
+    // archive the object
     await Cheese
     .update(inputs.id)
     .set({
       isDeleted: true,
     })
 
+    // return all non-deleted inventory items
     let cheeses = await Cheese
     .find({
       where: {isDeleted: false}
@@ -44,7 +45,7 @@ module.exports = {
     })
 
     return exits.success({
-      message: "record archived~!",
+      message: 'record deleted~!',
       cheeses: cheeses,
     });
 
