@@ -19,7 +19,21 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    return exits.success();
+    let factories = await Factory
+    .find({
+      where:{isDeleted:false}
+    })
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
+
+
+
+    return exits.success({
+      message:'',
+      factories: factories,
+    });
 
   }
 

@@ -7,6 +7,19 @@ module.exports = {
 
   description: 'Creates a factory and returns to /factory once it Creates',
 
+  inputs:{
+
+    factoryLocation: {
+      type: 'string',
+      required: true,
+    },
+
+    factoryCountry: {
+      type: 'string',
+      required: true,
+    },
+
+  },
 
   exits: {
 
@@ -19,7 +32,33 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    return exits.success();
+    let newFactory = await Factory
+    .create(inputs)
+    .fetch()
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
+
+    let message = "Factory successfully added"
+
+    let factories = await Factory
+    .find({
+      where:{isDeleted:false}
+    })
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
+
+
+
+    return exits.success({
+      message: "Factory successfully added",
+      factories: factories,
+    });
+
+
 
   }
 

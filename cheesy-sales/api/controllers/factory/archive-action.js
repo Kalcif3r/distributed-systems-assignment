@@ -5,7 +5,17 @@ module.exports = {
   friendlyName: 'Archive this factory',
 
 
-  description: 'Archive a factory and returns tp /factory once it Archives',
+  description: 'Archive a factory and returns to /factory once it Archives',
+
+
+  inputs: {
+
+   id: {
+     type: 'number',
+     required: true,
+   },
+
+ },
 
 
   exits: {
@@ -19,7 +29,26 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    return exits.success();
+
+    await Factory
+   .update(inputs.id)
+   .set({
+     isDeleted: true,
+   })
+
+   let factories = await Factory
+   .find({
+     where: {isDeleted: false}
+   })
+   .intercept((err)=>{
+     err.message = 'Uh oh: '+ err.message
+     return err;
+   })
+
+    return exits.success({
+      message: "Record deleted successfully",
+      factories: factories,
+    });
 
   }
 
