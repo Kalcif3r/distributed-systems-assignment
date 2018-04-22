@@ -1,28 +1,21 @@
 module.exports = {
 
-  friendlyName: 'Create this cheese',
+  friendlyName: 'Create this factory',
 
 
-  description: 'Creates a cheese and returns to /cheese once it Creates',
+  description: 'Creates a factory and returns to /factory once it Creates',
 
+  inputs:{
 
-  inputs: {
-
-    cheeseName: {
+    factoryLocation: {
       type: 'string',
       required: true,
     },
 
-    cheeseDescription: {
+    factoryCountry: {
       type: 'string',
       required: true,
     },
-
-    cheesePrice: {
-      type: 'number',
-      required : true,
-    },
-
 
   },
 
@@ -37,7 +30,7 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    let newRecord = await Cheese
+    let newFactory = await Factory
     .create(inputs)
     .fetch()
     .intercept((err)=>{
@@ -45,7 +38,9 @@ module.exports = {
       return err;
     })
 
-    return exits.success('/Cheese');
+    return exits.success('/Factory')
+
+
 
   }
 

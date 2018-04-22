@@ -35,9 +35,33 @@ module.exports.routes = {
   'GET /account/profile':    { action: 'account/view-edit-profile' },
 
   // CHEESE ACTIONS
-  'GET /Cheese':                                    { action: 'cheese/view-all' },
-  'POST /Cheese/add':                               { action: 'cheese/add-action' },
-  'GET /Cheese/update-view/:cheeseID':            { action: 'cheese/update-view' },
+  'GET   /Cheese':                                    { action: 'cheese/view-all' },
+  'POST  /Cheese/add-action':                         { action: 'cheese/add-action' },
+  'GET   /Cheese/update-view/:cheeseID':              { action: 'cheese/update-view' },
+  'POST  /Cheese/update-action':                      { action: 'cheese/update-action' },
+  'POST  /Cheese/archive-action':                     { action: 'cheese/archive-action' },
+
+  // FACTORY ACTIONS
+  'GET   /Factory':                                   { action: 'factory/view-all' },
+  'POST  /Factory/add-action':                        { action: 'factory/add-action' },
+  'GET   /Factory/update-view/:factoryID':            { action: 'factory/update-view' },
+  'POST  /Factory/update-action':                     { action: 'factory/update-action' },
+  'POST  /Factory/archive-action':                    { action: 'factory/archive-action' },
+
+  // INVENTORY ACTIONS
+  'GET   /Inventory':                                 { action: 'inventory/view-all' },
+  'POST  /Inventory/add-action':                      { action: 'inventory/add-action' },
+  'GET   /Inventory/update-view/:inventoryID':        { action: 'inventory/update-view' },
+  'POST  /Inventory/update-action':                   { action: 'inventory/update-action' },
+  'POST  /Inventory/archive-action':                  { action: 'inventory/archive-action' },
+
+  // INVOICE ACTIONS
+  'GET   /Invoice':                                   { action: 'invoice/view-all' },
+  'POST  /Invoice/add-action':                        { action: 'invoice/add-action' },
+  'GET   /Invoice/update-view/:invoiceID':            { action: 'invoice/update-view' },
+  'POST  /Invoice/update-action':                     { action: 'invoice/update-action' },
+  'POST  /Invoice/archive-action':                    { action: 'invoice/archive-action' },
+
 
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗

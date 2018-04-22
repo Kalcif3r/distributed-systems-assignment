@@ -1,15 +1,15 @@
 module.exports = {
 
-  friendlyName: 'View all cheese',
+  friendlyName: 'View all factory',
 
 
-  description: 'Display "cheese" page.',
+  description: 'Display "factory" page.',
 
 
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/cheese/view-all',
+      viewTemplatePath: 'pages/factory/view-all',
     }
 
   },
@@ -17,17 +17,19 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    let cheeses = await Cheese
+    let factories = await Factory
     .find({
-      where: {isDeleted: false}
+      where:{isDeleted:false}
     })
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;
     })
 
+
+
     return exits.success({
-      cheeses: cheeses,
+      factories: factories,
     });
 
   }

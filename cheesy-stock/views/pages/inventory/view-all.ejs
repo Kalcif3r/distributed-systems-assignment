@@ -1,0 +1,103 @@
+<div class="container">
+  <h1 class="my-5">Inventory</h1>
+
+<!-- START of card -->
+  <div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-success mb-3 " data-toggle="modal" data-target="#add-inventory" type="button" name="button">Create a New Inventory Record</button>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Factory Name</th>
+          <th scope="col">Cheese Name</th>
+          <th scope="col">Quantity in Stock</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% inventory.forEach( inventory => { %>
+          <tr>
+            <td><%=inventory.factoryID.factoryLocation %> </td>
+            <td><%=inventory.cheeseID.cheeseName %> </td>
+            <td><%=inventory.stock %> </td>
+            <td><a href="/inventory/update-view/<%= inventory.id %>"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- END of card -->
+
+<!-- START of myModal -->
+<div id="add-inventory" class="modal" tabindex="-1" role="dialog">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Add in a new type of Inventory</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <form action="inventory/add-action" method="POST">
+
+          <!-- START of Searchable Dropdown FOR FactoryID -->
+          <div class="form-group">
+            <label for="inventory-view-factoryID">Factory</label>
+            <div class="ui fluid search selection dropdown">
+              <input required value="" type="hidden" name="factoryID" id="inventory-view-factoryID" >
+              <i class="dropdown icon"></i>
+              <div class="default text">Select a Factory</div>
+              <div class="menu">
+                <% factories.forEach( factory => { %>
+                  <div class="item" data-value="<%= factory.id %>"><%= factory.factoryLocation %></div>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+          <!-- END of Searchable Dropdown -->
+
+          <!-- START of Searchable Dropdown FOR CheeseID -->
+          <div class="form-group">
+            <label for="inventory-view-cheeseID">Cheese Type</label>
+            <div class="ui fluid search selection dropdown">
+              <input required value="" type="hidden" name="cheeseID" id="inventory-view-cheeseID" >
+              <i class="dropdown icon"></i>
+              <div class="default text">Select a Cheese Type</div>
+              <div class="menu">
+                <% cheeses.forEach( cheese => { %>
+                  <div class="item" data-value="<%= cheese.id %>"><%= cheese.cheeseName %></div>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+          <!-- END of Searchable Dropdown -->
+
+          <div class="form-group">
+            <label for="inventory-view-quantity-remaining">Quantity in Stock</label>
+            <input required name="stock"  type="number" class="form-control" id="inventory-view-quantity-remaining" placeholder="Enter how much stock is remaining"></input>
+          </div>
+
+
+
+          <!-- END of container -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Submit New Record</button>
+          <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+  </div>
+</div>
+</div>
+<!-- END of myModal -->
+</div>
+
+<!-- START of card -->
+<!-- END of card -->

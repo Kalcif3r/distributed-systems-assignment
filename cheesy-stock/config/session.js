@@ -18,7 +18,7 @@ module.exports.session = {
   * of your users, forcing them to log in again.                             *
   *                                                                          *
   ***************************************************************************/
-  secret: '264766d5b057d1d00c9fa03163f39159',
+  secret: 'c2dc862379892dca579c645e4e112d43',
 
   host: '192.168.8.101',
   port: 6379,

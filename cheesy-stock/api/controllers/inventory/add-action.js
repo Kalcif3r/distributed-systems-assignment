@@ -1,28 +1,27 @@
 module.exports = {
 
-  friendlyName: 'Create this cheese',
+  friendlyName: 'Create this inventory',
 
 
-  description: 'Creates a cheese and returns to /cheese once it Creates',
+  description: 'Creates a inventory and returns to /inventory once it Creates',
 
 
   inputs: {
 
-    cheeseName: {
-      type: 'string',
+    factoryID: {
+      type: 'number',
       required: true,
     },
 
-    cheeseDescription: {
-      type: 'string',
+    cheeseID: {
+      type: 'number',
       required: true,
     },
 
-    cheesePrice: {
+    stock: {
       type: 'number',
       required : true,
     },
-
 
   },
 
@@ -37,7 +36,8 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    let newRecord = await Cheese
+    // creates a new inventory record
+    await Inventory
     .create(inputs)
     .fetch()
     .intercept((err)=>{
@@ -45,7 +45,8 @@ module.exports = {
       return err;
     })
 
-    return exits.success('/Cheese');
+    //Return to view-all
+    return exits.success('/Inventory')
 
   }
 

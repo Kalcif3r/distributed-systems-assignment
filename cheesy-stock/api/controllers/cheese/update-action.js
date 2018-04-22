@@ -1,12 +1,16 @@
 module.exports = {
 
-  friendlyName: 'Create this cheese',
+  friendlyName: 'Update this cheese',
 
 
-  description: 'Creates a cheese and returns to /cheese once it Creates',
-
+  description: 'Update a cheese and returns tp /cheese once it Updates',
 
   inputs: {
+
+    id: {
+      type: 'number',
+      required: true,
+    },
 
     cheeseName: {
       type: 'string',
@@ -23,7 +27,11 @@ module.exports = {
       required : true,
     },
 
+    isDeleted: {
+      type: 'boolean',
+      defaultsTo: false,
 
+    },
   },
 
   exits: {
@@ -37,15 +45,17 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    let newRecord = await Cheese
-    .create(inputs)
-    .fetch()
+    sails.log(inputs)
+
+    await Cheese
+    .update(inputs.id)
+    .set(inputs)
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;
     })
 
-    return exits.success('/Cheese');
+    return exits.success('/Cheese')
 
   }
 
