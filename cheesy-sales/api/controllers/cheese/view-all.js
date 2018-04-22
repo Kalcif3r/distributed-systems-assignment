@@ -20,7 +20,9 @@ module.exports = {
   fn: async function (inputs, exits) {
 
     let cheeses = await Cheese
-    .find()
+    .find({
+      where: {isDeleted: false}
+    })
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;

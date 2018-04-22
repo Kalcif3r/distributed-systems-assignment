@@ -55,6 +55,13 @@ module.exports.routes = {
   'POST  /Inventory/update-action':                          { action: 'inventory/update-action' },
   'POST  /Inventory/archive-action':                         { action: 'inventory/archive-action' },
 
+  // Invoice ACTIONS
+  'GET   /Invoice':                                   { action: 'invoice/view-all' },
+  'POST  /Invoice/add':                               { action: 'invoice/add-action' },
+  'GET   /Invoice/update-view/:invoiceID':            { action: 'invoice/update-view' },
+  'POST  /Invoice/update':                            { action: 'invoice/update-action' },
+  'POST  /Invoice/archive':                           { action: 'invoice/archive-action' },
+
 
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗

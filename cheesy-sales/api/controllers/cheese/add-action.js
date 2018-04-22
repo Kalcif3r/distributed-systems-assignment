@@ -22,6 +22,12 @@ module.exports = {
       required: true,
     },
 
+    cheesePrice: {
+      type: 'number',
+      required : true,
+    },
+
+
   },
 
   exits: {
@@ -43,10 +49,12 @@ module.exports = {
       return err;
     })
 
-    let message = "new record created~!"
+    let message = "new record succesfully created~!"
 
     let cheeses = await Cheese
-    .find()
+    .find({
+      where: {isDeleted: false}
+    })
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;
