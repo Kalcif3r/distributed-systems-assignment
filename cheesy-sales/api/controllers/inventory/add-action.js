@@ -1,9 +1,5 @@
 module.exports = {
 
-  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
-  // this is a POST request and therefore it expects to see INPUTS
-
-
   friendlyName: 'Create this inventory',
 
 
@@ -32,7 +28,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/inventory/view-all',
+      responseType: 'redirect',
     }
 
   },
@@ -49,34 +45,8 @@ module.exports = {
       return err;
     })
 
-    // return all records including the new & non-deleted inventory items
-    let inventory = await Inventory
-    .find({
-      where: {isDeleted: false}
-    })
-    .intercept((err)=>{
-      err.message = 'Uh oh: '+ err.message
-      return err;
-    })
-
-    // return all factories and cheeses for the dropdowns to process
-    let factories = await Factory
-    .find({
-      where: {isDeleted: false}
-    })
-
-    let cheeses = await Cheese
-    .find({
-      where: {isDeleted: false}
-    })
-
-    // return to view
-    return exits.success({
-      message: 'new record created~!',
-      inventory: inventory,
-      factories: factories,
-      cheeses: cheeses,
-    });
+    //Return to view-all
+    return exits.success('/Inventory')
 
   }
 

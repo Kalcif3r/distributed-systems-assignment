@@ -1,7 +1,5 @@
 module.exports = {
 
-  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
-
   friendlyName: 'Update this factory',
 
 
@@ -30,7 +28,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/factory/view-all',
+      responseType: 'redirect',
     }
 
   },
@@ -41,23 +39,12 @@ module.exports = {
     await Factory
     .update(inputs.id)
     .set(inputs)
-
-
-    let factories = await Factory
-    .find({
-      where:{isDeleted:false}
-    })
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;
     })
 
-
-
-    return exits.success({
-      message:'Factory has been updated',
-      factories: factories,
-    });exits.success();
+    return exits.success('/Factory')
 
   }
 

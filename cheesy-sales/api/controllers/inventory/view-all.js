@@ -1,7 +1,5 @@
 module.exports = {
 
-  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
-
   friendlyName: 'View all inventory',
 
 
@@ -46,7 +44,6 @@ module.exports = {
 
     // return to view
     return exits.success({
-      message: '',
       inventory: inventory,
       factories: factories,
       cheeses: cheeses,

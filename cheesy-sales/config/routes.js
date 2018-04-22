@@ -42,7 +42,7 @@ module.exports.routes = {
   'POST  /Cheese/archive-action':                     { action: 'cheese/archive-action' },
 
   // FACTORY ACTIONS
-  'GET   /Factory':                                   { action: 'factory/view-all' },
+  'GET   /Factory2':                                   { action: 'factory/view-all' },
   'POST  /Factory/add-action':                        { action: 'factory/add-action' },
   'GET   /Factory/update-view/:factoryID':            { action: 'factory/update-view' },
   'POST  /Factory/update-action':                     { action: 'factory/update-action' },

@@ -1,7 +1,5 @@
 module.exports = {
 
-  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
-
   friendlyName: 'Archive this cheese',
 
 
@@ -19,7 +17,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/cheese/view-all',
+      responseType: 'redirect',
     }
 
   },
@@ -33,21 +31,12 @@ module.exports = {
     .set({
       isDeleted: true,
     })
-
-    // return all non-deleted inventory items
-    let cheeses = await Cheese
-    .find({
-      where: {isDeleted: false}
-    })
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;
     })
 
-    return exits.success({
-      message: 'record deleted~!',
-      cheeses: cheeses,
-    });
+    return exits.success('/Cheese');
 
   }
 

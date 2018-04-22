@@ -1,7 +1,5 @@
 module.exports = {
 
-  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
-
   friendlyName: 'View all cheese',
 
 
@@ -28,9 +26,7 @@ module.exports = {
       return err;
     })
 
-
     return exits.success({
-      message:'',
       cheeses: cheeses,
     });
 

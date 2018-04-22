@@ -1,7 +1,5 @@
 module.exports = {
 
-  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
-
   friendlyName: 'View all factory',
 
 
@@ -31,7 +29,6 @@ module.exports = {
 
 
     return exits.success({
-      message:'',
       factories: factories,
     });
 

@@ -1,7 +1,5 @@
 module.exports = {
 
-  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
-
   friendlyName: 'Update this cheese',
 
 
@@ -39,7 +37,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/cheese/view-all',
+      responseType: 'redirect',
     }
 
   },
@@ -47,25 +45,17 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
+    sails.log(inputs)
+
     await Cheese
     .update(inputs.id)
     .set(inputs)
-
-sails.log(inputs)
-
-    let cheeses = await Cheese
-    .find({
-      where: {isDeleted: false}
-    })
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;
     })
 
-    return exits.success({
-      message:'cheese has been updated',
-      cheeses: cheeses,
-    }); exits.success();
+    return exits.success('/Cheese')
 
   }
 

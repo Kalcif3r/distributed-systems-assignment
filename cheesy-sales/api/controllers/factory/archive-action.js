@@ -1,7 +1,5 @@
 module.exports = {
 
-  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
-
   friendlyName: 'Archive this factory',
 
 
@@ -21,7 +19,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/factory/view-all',
+      responseType: 'redirect',
     }
 
   },
@@ -35,20 +33,12 @@ module.exports = {
    .set({
      isDeleted: true,
    })
-
-   let factories = await Factory
-   .find({
-     where: {isDeleted: false}
-   })
    .intercept((err)=>{
      err.message = 'Uh oh: '+ err.message
      return err;
    })
 
-    return exits.success({
-      message: "Record deleted successfully",
-      factories: factories,
-    });
+    return exits.success('/Factory')
 
   }
 

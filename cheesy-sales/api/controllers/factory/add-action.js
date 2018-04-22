@@ -1,7 +1,5 @@
 module.exports = {
 
-  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
-
   friendlyName: 'Create this factory',
 
 
@@ -24,7 +22,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/factory/view-all',
+      responseType: 'redirect',
     }
 
   },
@@ -40,23 +38,7 @@ module.exports = {
       return err;
     })
 
-    let message = "Factory successfully added"
-
-    let factories = await Factory
-    .find({
-      where:{isDeleted:false}
-    })
-    .intercept((err)=>{
-      err.message = 'Uh oh: '+ err.message
-      return err;
-    })
-
-
-
-    return exits.success({
-      message: "Factory successfully added",
-      factories: factories,
-    });
+    return exits.success('/Factory')
 
 
 

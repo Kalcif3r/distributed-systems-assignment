@@ -1,7 +1,5 @@
 module.exports = {
 
-  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
-
   friendlyName: 'Update this inventory',
 
 
@@ -34,7 +32,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/inventory/view-all',
+      responseType: 'redirect',
     }
 
   },
@@ -46,37 +44,13 @@ module.exports = {
     await Inventory
     .update(inputs.id)
     .set(inputs)
-
-    // return all non-deleted inventory items
-    let inventory = await Inventory
-    .find({
-      where: {isDeleted: false}
-    })
-    .populate('factoryID')
-    .populate('cheeseID')
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;
     })
 
-    // return all factories and cheeses for the dropdowns to process
-    let factories = await Factory
-    .find({
-      where: {isDeleted: false}
-    })
-
-    let cheeses = await Cheese
-    .find({
-      where: {isDeleted: false}
-    })
-
-    // return view
-    return exits.success({
-      message:'inventory has been updated',
-      inventory: inventory,
-      factories: factories,
-      cheeses: cheeses,
-    });
+    //Return to view-all
+    return exits.success('/Inventory')
 
   }
 

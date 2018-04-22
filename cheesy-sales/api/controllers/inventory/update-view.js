@@ -1,7 +1,5 @@
 module.exports = {
 
-  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
-
   friendlyName: 'Update this inventory',
 
 
@@ -21,7 +19,7 @@ module.exports = {
 
     let inventoryID = this.req.params.inventoryID
 
-    let inventory = await Cheese.findOne(inventoryID)
+    let inventory = await Inventory.findOne(inventoryID)
     .populate('factoryID')
     .populate('cheeseID')
 
