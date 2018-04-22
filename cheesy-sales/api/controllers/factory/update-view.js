@@ -19,7 +19,14 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    return exits.success();
+
+    let factoryID = this.req.params.factoryID
+
+    let factory = await Factory.findOne(factoryID)
+
+    return exits.success({
+      factory: factory,
+    });
 
   }
 

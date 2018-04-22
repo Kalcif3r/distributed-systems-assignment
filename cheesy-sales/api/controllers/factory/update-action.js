@@ -5,7 +5,26 @@ module.exports = {
   friendlyName: 'Update this factory',
 
 
-  description: 'Update a factory and returns tp /factory once it Updates',
+  description: 'Update a factory and returns to /factory once it Updates',
+
+  inputs:{
+
+    id: {
+      type: 'number',
+      required: true,
+    },
+
+    factoryLocation: {
+      type: 'string',
+      required: true,
+    },
+
+    factoryCountry: {
+      type: 'string',
+      required: true,
+    },
+
+  },
 
 
   exits: {
@@ -19,7 +38,26 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    return exits.success();
+    await Factory
+    .update(inputs.id)
+    .set(inputs)
+
+
+    let factories = await Factory
+    .find({
+      where:{isDeleted:false}
+    })
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
+
+
+
+    return exits.success({
+      message:'Factory has been updated',
+      factories: factories,
+    });exits.success();
 
   }
 
