@@ -46,11 +46,13 @@ function addInvoiceItem () {
     // console.log('invoiceItemArrays value new is : '  , newValue)
     // console.log('invoiceItemArrays value new parsed is : '  , newValue)
   $('#addItemTable-body').append(`
-    <th scope="row"></th>
-    <td>${$('#invoice-view-factoryID').val()}</td>
-    <td>${$('#invoice-view-cheeseID').val()}</td>
-    <td>${$('#invoice-view-quantity').val()}</td>
-    <td>${$('#invoice-view-price').val()}</td>
+    <tr>
+      <td>2x</td>
+      <td>${$('#invoice-view-cheeseID').val()}</td>
+      <td>${$('#invoice-view-quantity').val()}</td>
+      <td>${$('#invoice-view-price').val()}</td>
+      <td>${$('#invoice-view-price').val() * $('#invoice-view-quantity').val()}</td>
+    </tr>
     `)
   }
 }
