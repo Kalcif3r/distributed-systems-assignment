@@ -1,10 +1,9 @@
 module.exports = {
 
+  friendlyName: 'View all cheese',
 
-  friendlyName: 'View all Cheese',
 
-
-  description: 'Display "Cheese" page.',
+  description: 'Display "cheese" page.',
 
 
   exits: {
@@ -18,7 +17,18 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    return exits.success();
+    let cheeses = await Cheese
+    .find({
+      where: {isDeleted: false}
+    })
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
+
+    return exits.success({
+      cheeses: cheeses,
+    });
 
   }
 

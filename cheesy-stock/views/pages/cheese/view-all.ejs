@@ -13,28 +13,22 @@
           <th scope="col">#</th>
           <th scope="col">Cheese Name</th>
           <th scope="col">Description</th>
+          <th scope="col">Cheese Price</th>
+          <!-- <th scope="col">is Deleted?</th> -->
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td><a href="/cheese/update-view/1"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td><a href="#"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td><a href="#"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
-        </tr>
+        <% cheeses.forEach( cheese => { %>
+          <tr>
+            <th scope="row"><%= cheese.id %></th>
+            <td><%- cheese.cheeseName %> </td>
+            <td><%- cheese.cheeseDescription %> </td>
+            <td><%- cheese.cheesePrice %> </td>
+            <!-- <td><%- cheese.isDeleted %> </td> -->
+            <td><a href="/cheese/update-view/<%= cheese.id %>"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+          </tr>
+        <% }) %>
       </tbody>
     </table>
   </div>
@@ -57,12 +51,17 @@
         <form action="cheese/add-action" method="POST">
           <div class="form-group">
             <label for="cheese-view-name">Name</label>
-            <input required name="name" type="text" class="form-control" id="cheese-view-name" aria-describedby="emailHelp" placeholder="Enter Cheese Name">
+            <input required name="cheeseName" type="text" class="form-control" id="cheese-view-name" aria-describedby="emailHelp" placeholder="Enter Cheese Name">
           </div>
           <div class="form-group">
             <label for="cheese-view-description">Description</label>
-            <textarea required name="description"  type="text" class="form-control edit-description" id="cheese-view-description" placeholder="Enter a description for this cheese"></textarea>
+            <textarea required name="cheeseDescription"  type="text" class="form-control edit-description" id="cheese-view-description" placeholder="Enter a description for this cheese"></textarea>
           </div>
+          <div class="form-group">
+            <label for="cheese-view-name">Cheese Price</label>
+            <input required name="cheesePrice" type="text" class="form-control" id="cheese-view-price" aria-describedby="emailHelp" placeholder="Enter Cheese Price">
+          </div>
+
           </div>
         </div>
         <div class="modal-footer">

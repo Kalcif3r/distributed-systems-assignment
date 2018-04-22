@@ -1,9 +1,5 @@
 module.exports = {
 
-  // FIXME: NEED TO ACTUALLY CREATE CONTROLLER
-  // this is a POST request and therefore it expects to see INPUTS
-
-
   friendlyName: 'Create this cheese',
 
 
@@ -33,7 +29,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/cheese/view-all',
+      responseType: 'redirect',
     }
 
   },
@@ -49,24 +45,7 @@ module.exports = {
       return err;
     })
 
-    let message = "new record succesfully created~!"
-
-    let cheeses = await Cheese
-    .find({
-      where: {isDeleted: false}
-    })
-    .intercept((err)=>{
-      err.message = 'Uh oh: '+ err.message
-      return err;
-    })
-
-sails.log('cheeses are kkkk',cheeses)
-
-
-    return exits.success({
-      message: "new record created~!",
-      cheeses: cheeses,
-    });
+    return exits.success('/Cheese');
 
   }
 

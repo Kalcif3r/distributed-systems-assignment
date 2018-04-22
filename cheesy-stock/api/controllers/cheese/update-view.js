@@ -1,10 +1,9 @@
 module.exports = {
 
+  friendlyName: 'Update this cheese',
 
-  friendlyName: 'Update this Cheese',
 
-
-  description: 'Display "Update Cheese" page.',
+  description: 'Update a cheese and returns tp /cheese once it Updates',
 
 
   exits: {
@@ -18,7 +17,13 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    return exits.success();
+    let cheeseID = this.req.params.cheeseID
+
+    let cheese = await Cheese.findOne(cheeseID)
+
+    return exits.success({
+      cheese: cheese,
+    });
 
   }
 

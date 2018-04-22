@@ -48,6 +48,9 @@ module.exports.datastores = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
+    // adapter: 'sails-mysql',
+
+
 
     adapter: 'sails-mysql',
     database: 'CheesyDB',
@@ -60,6 +63,8 @@ module.exports.datastores = {
 
 
     url: 'mysql://senal:password@192.168.8.101:3366/CheesyDB',
+
+
 
   },
 

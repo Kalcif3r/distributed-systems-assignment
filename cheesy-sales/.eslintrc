@@ -40,7 +40,12 @@
     "async": true,
 
     // Models:
-    "User": true
+    "User": true,
+    "Cheese": true,
+    "Inventory": true,
+    "Invoice": true,
+    "InvoiceItems": true,
+    "Factory": true,
 
     // …and any others.
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
