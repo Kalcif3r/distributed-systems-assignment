@@ -12,6 +12,9 @@ module.exports = {
 
     success: {
       viewTemplatePath: 'pages/invoice/view-all',
+    },
+    badRequest: {
+      statusCode: '500',
     }
 
   },
@@ -42,13 +45,13 @@ module.exports = {
       invoiceItems : [
         {
           factoryID : 60,
-          cheeseID: 70,
+          cheeseID: 60,
           quantity: 1,
           price: 100,
         },
         {
           factoryID : 60,
-          cheeseID: 60,
+          cheeseID: 70,
           quantity: 2,
           price: 200,
         },
@@ -56,70 +59,88 @@ module.exports = {
     }
 
 
+    let i = 0;
 
     var flaverr = require('flaverr');
-
+    sails.log('right outside of transaction')
     await sails.getDatastore()
     .transaction(async (db, proceed)=> {
 
-      fakeObject.invoiceItems.forEach(async (invoiceItem) => {
+      let {invoiceItems} = fakeObject
 
-        var inventoryItem = await Inventory.findOne({
+      console.log('plog -- invoiceItem.length',invoiceItems.length)
+
+      // this FOR loop is like a forEach loop except it knows when it fucks up by checking for err
+      for( let i = 0, err=''; i < invoiceItems.length && !err; i++ ) {
+        await Inventory.findOne({
           where: {
-            cheeseID: invoiceItem.cheeseID,
-            factoryID: invoiceItem.factoryID
+            cheeseID: invoiceItems[i].cheeseID,
+            factoryID: invoiceItems[i].factoryID,
           }
-        })
-        .usingConnection(db);
+        }).usingConnection(db)
+        .then( async result => {
+          console.log('plog -- result.id exists: ',result.id)
+          if( result.isBeingUpdated ){
+            // this is where the try again a few times would go if we did the one that tries again like three times.
+            throw flaverr('E_BEING_UPDATED', new Error('this record is being touched gently'))
+          }
 
-        await sails.log('Selected inventory record: ', inventoryItem)
+          // if not being updated. then LOCK THAT SHIT DOWN.
+          await Inventory.update(result.id)
+          .set({
+            isBeingUpdated: true
+          })
 
-        if (inventoryItem.stock <= invoiceItem.quantity) {
-          let err = flaverr('E_INSUFFICIENT_STOCKS', new Error('Oops, No. K sorry bye'))
-          sails.log('E_INSUFFICIENT_STOCKS')
-          return proceed(err)
-        }
+        },
+        // if error
+        err => {
+          console.log('plog -- err',err)
+        } )
 
-        else if(inventoryItem.isBeingUpdated == false){
+      }
 
-          await Inventory.update(inventoryItem.id)
-           .set({isBeingUpdated: true})
-           .usingConnection(db)
-          await sails.log('isBeingUpdated switched to TRUE')
-
-          await Inventory.update(inventoryItem.id)
-          .set({stock: inventoryItem.stock-invoiceItem.quantity})
-          .usingConnection(db)
-          await sails.log('The stock was reduced!')
-
-
-          await Inventory.update(inventoryItem.id)
-          .set({isBeingUpdated: false})
-          .usingConnection(db)
-          await sails.log('isBeingUpdated switched to FALSE')
-        }
-
-        else {
-          let err = flaverr('E_RECORD_BEING_UPDATED', new Error('Welp someone is accessing it. Sorry'))
-          return proceed(err)
-        }
-
-      })
 
       return proceed()
-
     })
-    .intercept('E_INSUFFICIENT_STOCKS', ()=>'badRequest')
+    .intercept('E_BEING_UPDATED', ()=>'badRequest')
     .intercept('E_RECORD_BEING_UPDATED', ()=>'notFound');
 
+    sails.log('at the end')
     // respond with a 200:
     return exits.success();
 
-  }
+  } // end of the entire FN function
+
 
 
 };
 
-function hoisted (inventoryItem){
+/*
 
+var myAccount = await BankAccount.findOne({ owner: this.req.session.userId })
+.usingConnection(db);
+if (!myAccount) {
+return proceed(new Error('Consistency violation: Database is corrupted-- logged in user record has gone missing'));
 }
+
+
+async.waterfall([
+  function(callback) {
+    callback(null, 'one', 'two');
+  },
+  function(arg1, arg2, callback) {
+    // arg1 now equals 'one' and arg2 now equals 'two'
+    callback(null, 'three');
+  },
+  function(arg1, callback) {
+    // arg1 now equals 'three'
+    callback(null, 'done');
+  }
+], (err, result) => {
+  if(err){
+    //
+  }
+})
+
+
+*/
