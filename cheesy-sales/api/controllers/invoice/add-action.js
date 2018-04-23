@@ -15,6 +15,9 @@ module.exports = {
     },
     badRequest: {
       statusCode: '500',
+    },
+    err: {
+      statusCode: '500',
     }
 
   },
@@ -71,7 +74,7 @@ module.exports = {
       console.log('plog -- invoiceItem.length',invoiceItems.length)
 
       // this FOR loop is like a forEach loop except it knows when it fucks up by checking for err
-      for( let i = 0, err=''; i < invoiceItems.length && !err; i++ ) {
+      for( let i = 0, err= undefined; i < invoiceItems.length && !err; i++ ) {
         await Inventory.findOne({
           where: {
             cheeseID: invoiceItems[i].cheeseID,
@@ -82,27 +85,35 @@ module.exports = {
           console.log('plog -- result.id exists: ',result.id)
           if( result.isBeingUpdated ){
             // this is where the try again a few times would go if we did the one that tries again like three times.
-            throw flaverr('E_BEING_UPDATED', new Error('this record is being touched gently'))
+            err = 'words'
+            throw flaverr('E_BEING_UPDATED', new Error('ERR: this record is being touched gently'))
           }
 
           // if not being updated. then LOCK THAT SHIT DOWN.
-          await Inventory.update(result.id)
+          Inventory.update(45)
           .set({
             isBeingUpdated: true
           })
+          .then ( result => {
+            console.log('plog -- result in update',result)
+            if (!result) {
+              err = 'words'
+              throw  flaverr('E_UPDATE_ERROR', new Error('An error for Update occured'));
+            }
+          })
 
-        },
-        // if error
-        err => {
-          console.log('plog -- err',err)
-        } )
+
+
+        })
 
       }
 
 
       return proceed()
     })
-    .intercept('E_BEING_UPDATED', ()=>'badRequest')
+    .intercept('E_UPDATE_ERROR', ()=>{sails.log('ERR: A record has failed to update'); return'badRequest'} )
+    .intercept('E_BEING_UPDATED', ()=>{sails.log('ERR: A record is being touched gently'); return'badRequest'} )
+    // .intercept('E_BEING_UPDATED', ()=>'badRequest')
     .intercept('E_RECORD_BEING_UPDATED', ()=>'notFound');
 
     sails.log('at the end')
