@@ -85,7 +85,7 @@ module.exports = {
           console.log('plog -- result.id exists: ',result.id)
           if( result.isBeingUpdated ){
             // this is where the try again a few times would go if we did the one that tries again like three times.
-            await function (){err = true}
+            await function (){err = true}()
             return proceed ( flaverr('E_BEING_UPDATED', new Error('ERR: this record is being touched gently')) )
           }
 
@@ -105,6 +105,7 @@ module.exports = {
 
           // check if the stock can actually be updated
           if (  result.stock < invoiceItems[i].quantity ) {
+            await function (){err = true}()
             return proceed ('E_NOT_ENOUGH_STOCK_ERROR', new Error('Not enough stock for this transaction in factory:'
                + result.factoryID + ' for cheeseID' + result.cheeseID))
           }
