@@ -39,16 +39,16 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    // let newRecord = await Cheese
-    // .create(inputs)
-    // .fetch()
-    // .intercept((err)=>{
-    //   err.message = 'Uh oh: '+ err.message
-    //   return err;
-    // })
-    //
-    // let message = "new record created~!"
-    //
+    let newRecord = await Cheese
+    .create(inputs)
+    .fetch()
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
+
+    let message = "new record created~!"
+
 
     return exits.success('/Cheese');
 

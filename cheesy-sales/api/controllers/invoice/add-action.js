@@ -47,14 +47,14 @@ module.exports = {
       total : 300,
       invoiceItems : [
         {
-          factoryID : 60,
-          cheeseID: 60,
+          factoryID : 1,
+          cheeseID: 1,
           quantity: 1,
           price: 100,
         },
         {
-          factoryID : 60,
-          cheeseID: 70,
+          factoryID : 2,
+          cheeseID: 2,
           quantity: 2,
           price: 200,
         },
@@ -74,7 +74,7 @@ module.exports = {
       console.log('plog -- invoiceItem.length',invoiceItems.length)
 
       // this FOR loop is like a forEach loop except it knows when it fucks up by checking for err
-      for( let i = 0, err= undefined; i < invoiceItems.length && !err; i++ ) {
+      for( let i = 0, err= false; i < invoiceItems.length && err === false; i++ ) {
         await Inventory.findOne({
           where: {
             cheeseID: invoiceItems[i].cheeseID,
@@ -85,31 +85,69 @@ module.exports = {
           console.log('plog -- result.id exists: ',result.id)
           if( result.isBeingUpdated ){
             // this is where the try again a few times would go if we did the one that tries again like three times.
-            err = 'words'
-            throw flaverr('E_BEING_UPDATED', new Error('ERR: this record is being touched gently'))
+            await function (){err = true}
+            return proceed ( flaverr('E_BEING_UPDATED', new Error('ERR: this record is being touched gently')) )
           }
 
           // if not being updated. then LOCK THAT SHIT DOWN.
-          Inventory.update(45)
+          let updatedResult = await Inventory.update(result.id)
           .set({
             isBeingUpdated: true
           })
-          .then ( result => {
-            console.log('plog -- result in update',result)
-            if (!result) {
-              err = 'words'
-              throw  flaverr('E_UPDATE_ERROR', new Error('An error for Update occured'));
+          .usingConnection(db)
+          .fetch()
+          await function () {
+            console.log('plog -- result in update for switching to true: ',updatedResult)
+            if (_.isEmpty(updatedResult)) {
+              return proceed ('E_UPDATE_ERROR', new Error('An error for Update occured'))
             }
+          }()
+
+          // check if the stock can actually be updated
+          if (  result.stock < invoiceItems[i].quantity ) {
+            return proceed ('E_NOT_ENOUGH_STOCK_ERROR', new Error('Not enough stock for this transaction in factory:'
+               + result.factoryID + ' for cheeseID' + result.cheeseID))
+          }
+
+
+          // update the stock
+          updatedResult = await Inventory.update(result.id)
+          .set({
+            stock: result.stock - invoiceItems[i].quantity
           })
+          .usingConnection(db)
+          .fetch()
+          await function () {
+            console.log('plog -- result in update of stock: ',updatedResult)
+            if (_.isEmpty(updatedResult)) {
+              return proceed ('E_UPDATE_ERROR', new Error('ERR: An error for Update occured'))
+            }
+          }()
 
-        })
 
-      }
+          // once done being updated set it to false
+          updatedResult = await Inventory.update(result.id)
+          .set({
+            isBeingUpdated: false
+          })
+          .usingConnection(db)
+          .fetch()
+          await function () {
+            console.log('plog -- result in update for switching back to false: ',updatedResult)
+            if (_.isEmpty(updatedResult)) {
+              return proceed ('E_UPDATE_ERROR', new Error('ERR: An error for Update occured'))
+            }
+          }()
+
+        }) // end of finding an inventory ID
+
+      } // end of for loop
 
 
       return proceed()
     })
     .intercept('E_UPDATE_ERROR', ()=>{sails.log('ERR: A record has failed to update'); return'badRequest'} )
+    .intercept('E_NOT_ENOUGH_STOCK_ERROR', ()=>{sails.log('ERR: Not enough stock for this transaction in factory'); return'badRequest'} )
     .intercept('E_BEING_UPDATED', ()=>{sails.log('ERR: A record is being touched gently'); return'badRequest'} )
     // .intercept('E_BEING_UPDATED', ()=>'badRequest')
     .intercept('E_RECORD_BEING_UPDATED', ()=>'notFound');
