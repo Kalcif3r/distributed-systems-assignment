@@ -4,56 +4,32 @@
   <!-- START of card -->
   <div class="card">
     <div class="card-body">
-      <form action="/inventory/update" method="POST">
+      <form action="/inventory/update-action" method="POST">
         <!-- NOTE: uncomment input when you're working on the API  and add the EJS-->
         <!-- <input name="id" value="" type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
+        <input name="id" value="<%= inventory.id %>" type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
 
-        <!-- START of Searchable Dropdown FOR FactoryID -->
         <div class="form-group">
           <label for="inventory-view-factoryID">Factory</label>
-          <div class="ui fluid search selection dropdown">
-            <input required value="" type="hidden" name="factoryID" id="inventory-view-factoryID" >
-            <i class="dropdown icon"></i>
-            <div class="default text">Select a Factory</div>
-            <div class="menu">
-              <div class="item" data-value="Goa"> Goa</div>
-              <div class="item" data-value="India"> India</div>
-              <div class="item" data-value="Venezuela"> Venezuela</div>
-            </div>
+
+            <input required disabled value="<%= inventory.factoryID.factoryLocation %>" type="text" class="form-control"  id="inventory-view-factoryID" >
+
           </div>
-        </div>
+
         <!-- END of Searchable Dropdown -->
 
         <!-- START of Searchable Dropdown FOR CheeseID -->
         <div class="form-group">
           <label for="inventory-view-cheeseID">Cheese Type</label>
-          <div class="ui fluid search selection dropdown">
-            <input required value="" type="hidden" name="cheeseID" id="inventory-view-cheeseID" >
-            <i class="dropdown icon"></i>
-            <div class="default text">Select a Cheese Type</div>
-            <div class="menu">
-              <div class="item" data-value="Blue Cheese"> Blue Cheese</div>
-              <div class="item" data-value="Gouda"> Gouda</div>
-              <div class="item" data-value="Mozzarella"> Mozzarella</div>
-            </div>
-          </div>
+
+            <input required disabled value="<%= inventory.cheeseID.cheeseName %>" type="text" class="form-control" id="inventory-view-cheeseID" >
+
         </div>
         <!-- END of Searchable Dropdown -->
 
-
         <div class="form-group">
-          <label for="inventory-view-quantity-initial">Initial Quantity</label>
-          <input required name="quantityIntiial"  type="number" class="form-control" id="inventory-view-quantity-initial" placeholder="Enter how much stock you're adding to stock"></input>
-        </div>
-
-        <div class="form-group">
-          <label for="inventory-view-quantity-remaining">Remaining Quantity</label>
-          <input required name="quantityRemaining"  type="number" class="form-control" id="inventory-view-quantity-remaining" placeholder="Enter how much stock is remaining"></input>
-        </div>
-
-        <div class="form-group">
-          <label for="inventory-view-manufacturing-cost">Manufacturing Cost</label>
-          <input required name="manufacturigCost"  type="number" class="form-control" id="inventory-view-manufacturing-cost" placeholder="Enter the cost of production for this batch"></input>
+          <label for="inventory-view-quantity-initial">Quantity in Stock</label>
+          <input  name="stock" value="<%= inventory.stock %>" type="number" class="form-control" id="inventory-view-quantity-initial" placeholder="Enter how much stock you're adding to stock"></input>
         </div>
 
         <!-- CSRF Token  -->
@@ -61,16 +37,18 @@
 
         <div class="mt-5 mb-3">
           <button type="submit" class="btn btn-primary">Update</button>
-          <form action="/inventory/archive" method="POST">
-            <!-- <input name="id" value="" type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
-            <button type="submit" class="btn btn-danger">Archive Record</button>
-          <!-- CSRF Token  -->
-          <!-- <input type="hidden" name="_csrf" value='<%= _csrf %>'> -->
-          </form>
+
         </div>
 
-      </div>
+      <!-- </div> -->
 
+    </form>
+    <form action="/Inventory/archive-action" method="POST">
+      <input name="id" value="<%= inventory.id %>" type="hidden" class="form-control">
+      <button type="submit" class="btn btn-danger">Archive Record</button>
+    <!-- CSRF Token  -->
+    <!-- <input type="hidden" name="_csrf" value='<%= _csrf %>'> -->
+    </div>
     </form>
     </div>
   <!-- END of card -->
