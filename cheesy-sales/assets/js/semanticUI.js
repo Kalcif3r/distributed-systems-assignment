@@ -10,7 +10,9 @@ function retrieveCheese(factoryID) {
         $( '#cheese-dropdown' ).empty();
         inventoryItems.forEach( inventoryItem => {
           $('#cheese-dropdown').append(`
-            <div class="item" value="${inventoryItem.cheeseID.id}" data-value="Blue Cheese"> ${inventoryItem.cheeseID.cheeseName}</div>
+            <div id="cheeseID-${inventoryItem.cheeseID.id}"name = "${inventoryItem.cheeseID.cheeseName}"class="item" value="${inventoryItem.cheeseID.id}" data-value="${inventoryItem.cheeseID.id}">
+              ${inventoryItem.cheeseID.cheeseName}
+            </div>
             `)
         })
       }
@@ -69,7 +71,7 @@ function addInvoiceItem () {
     $('#addItemTable-body').append(`
     <tr>
       <td>x</td>
-      <td>${$('#invoice-view-cheeseID').val()}</td>
+      <td>${$(`#cheeseID-${newValue.cheeseID}`).attr('name')}</td>
       <td>${$('#invoice-view-quantity').val()}</td>
       <td>${$('#invoice-view-price').val()}</td>
       <td>${$('#invoice-view-price').val() * $('#invoice-view-quantity').val()}</td>

@@ -104,9 +104,8 @@
                    <i class="dropdown icon"></i>
                    <div class="default text">Select a Factory</div>
                    <div class="menu">
-                     <div onclick="retrieveCheese(1)"class="item" value="1" data-value="Goa"> Goa</div>
                      <% factories.forEach( factory => { %>
-                       <div onclick="retrieveCheese(<%=factory.id%>)"class="item" value="<%=factory.id%>" data-value="<%=factory.factoryLocation%>"> <%=factory.factoryLocation%></div>
+                       <div onclick="retrieveCheese(<%=factory.id%>)"class="item" value="<%=factory.id%>" data-value="<%=factory.id%>"> <%=factory.factoryLocation%></div>
                      <% }) %>
                    </div>
                  </div>
@@ -124,9 +123,7 @@
                    <i class="dropdown icon"></i>
                    <div class="default text">Select a Cheese Type</div>
                    <div class="menu" id="cheese-dropdown">
-                     <div class="item" value="1" data-value="Blue Cheese"> Blue Cheese</div>
-                     <div class="item" value="2"data-value="Gouda"> Gouda</div>
-                     <div class="item" value="3"data-value="Mozzarella"> Mozzarella</div>
+
                    </div>
                  </div>
 
