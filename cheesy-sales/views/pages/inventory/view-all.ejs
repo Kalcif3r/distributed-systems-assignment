@@ -5,7 +5,9 @@
   <div class="card">
   <div class="card-body">
     <div class="d-flex justify-content-end">
+      <% if (me.isManager) { %>
       <button class="btn btn-success mb-3 " data-toggle="modal" data-target="#add-inventory" type="button" name="button">Create a New Inventory Record</button>
+      <% } %>
     </div>
     <table class="table table-hover">
       <thead>
@@ -47,6 +49,7 @@
         <form action="inventory/add-action" method="POST">
 
           <!-- START of Searchable Dropdown FOR FactoryID -->
+          <% if (me.isManager) { %>
           <div class="form-group">
             <label for="inventory-view-factoryID">Factory</label>
             <div class="ui fluid search selection dropdown">
@@ -60,6 +63,7 @@
               </div>
             </div>
           </div>
+            <% } %>
           <!-- END of Searchable Dropdown -->
 
           <!-- START of Searchable Dropdown FOR CheeseID -->
