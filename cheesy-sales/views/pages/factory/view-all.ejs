@@ -6,6 +6,7 @@
   <div class="card-body">
     <div class="d-flex justify-content-end">
       <button class="btn btn-success mb-3 " data-toggle="modal" data-target="#add-factory" type="button" name="button">Add new factory</button>
+      <button class="btn btn-success mb-3 ml-4" data-toggle="modal" data-target="#add-users-to-factory" type="button" name="button">Add users to factory</button>
     </div>
     <table class="table table-hover">
       <thead>
@@ -55,6 +56,62 @@
             <input required name="factoryCountry"  type="text" class="form-control" id="factory-view-country" placeholder="Enter a country for this factory"></input>
           </div>
           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Add factory</button>
+          <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Close</button>
+        </div>
+        <!-- CSRF Token  -->
+        <input type="hidden" name="_csrf" value='<%= _csrf %>'>
+    </form>
+  </div>
+</div>
+</div>
+<!-- END of myModal -->
+
+<!-- START of modal for adding users to a factory -->
+<div id="add-users-to-factory" class="modal" tabindex="-1" role="dialog">
+<div class="modal-dialog " role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Add a user to a Factory</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <form action="/factory/add-user-to-factory-action" method="POST">
+
+
+          <div class="form-group">
+            <label for="inventory-view-factoryID">Factory</label>
+            <div class="ui fluid search selection dropdown">
+              <input required value="" type="hidden" name="factoryID" id="inventory-view-factoryID" >
+              <i class="dropdown icon"></i>
+              <div class="default text">Select a Factory</div>
+              <div class="menu">
+                <% factories.forEach( factory => { %>
+                  <div class="item" data-value="<%= factory.id %>"><%= factory.factoryLocation %></div>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inventory-view-factoryID">User</label>
+            <div class="ui fluid search selection dropdown">
+              <input required value="" type="hidden" name="userID" id="inventory-view-factoryID" >
+              <i class="dropdown icon"></i>
+              <div class="default text">Select a User</div>
+              <div class="menu">
+                <% users.forEach( user => { %>
+                  <div class="item" data-value="<%= user.id %>"><%= user.fullName %></div>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-success">Add factory</button>
