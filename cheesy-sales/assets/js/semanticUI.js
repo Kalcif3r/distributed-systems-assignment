@@ -1,3 +1,24 @@
+function retrieveCheese(factoryID) {
+  console.log('plog -- inside retrieveCheese')
+  $.ajax({
+    url: `http://localhost:1337/Invoice/find-all-cheese-for-factory/${factoryID}`,
+    type: 'GET',
+    complete: result => {
+      console.log('result of request',result.responseJSON)
+      let inventoryItems = result.responseJSON
+      if( inventoryItems ) {
+        $( '#cheese-dropdown' ).empty();
+        inventoryItems.forEach( inventoryItem => {
+          $('#cheese-dropdown').append(`
+            <div class="item" value="${inventoryItem.cheeseID.id}" data-value="Blue Cheese"> ${inventoryItem.cheeseID.cheeseName}</div>
+            `)
+        })
+      }
+
+    }// end of complete
+  })
+}
+
 function addInvoiceItem () {
   let errors = false;
   let itemDetails = [
@@ -45,15 +66,22 @@ function addInvoiceItem () {
     // })
     // console.log('invoiceItemArrays value new is : '  , newValue)
     // console.log('invoiceItemArrays value new parsed is : '  , newValue)
-  $('#addItemTable-body').append(`
+    $('#addItemTable-body').append(`
     <tr>
-      <td>2x</td>
+      <td>x</td>
       <td>${$('#invoice-view-cheeseID').val()}</td>
       <td>${$('#invoice-view-quantity').val()}</td>
       <td>${$('#invoice-view-price').val()}</td>
       <td>${$('#invoice-view-price').val() * $('#invoice-view-quantity').val()}</td>
     </tr>
     `)
+
+    // update total
+    let sum = 0
+    oldValue.forEach( item => {
+      sum += item.price*item.quantity
+    })
+    $('#total-control').html(`<strong> Rs.${sum} </strong>`)
   }
 }
 

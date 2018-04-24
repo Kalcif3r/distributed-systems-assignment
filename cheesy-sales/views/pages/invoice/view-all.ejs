@@ -104,9 +104,10 @@
                    <i class="dropdown icon"></i>
                    <div class="default text">Select a Factory</div>
                    <div class="menu">
-                     <div class="item" value="1" data-value="Goa"> Goa</div>
-                     <div class="item" value="2" data-value="India"> India</div>
-                     <div class="item" value="3" data-value="Venezuela"> Venezuela</div>
+                     <div onclick="retrieveCheese(1)"class="item" value="1" data-value="Goa"> Goa</div>
+                     <% factories.forEach( factory => { %>
+                       <div onclick="retrieveCheese(<%=factory.id%>)"class="item" value="<%=factory.id%>" data-value="<%=factory.factoryLocation%>"> <%=factory.factoryLocation%></div>
+                     <% }) %>
                    </div>
                  </div>
                </div>
@@ -122,7 +123,7 @@
                    <input required value="" type="hidden" name="cheeseID" id="invoice-view-cheeseID" >
                    <i class="dropdown icon"></i>
                    <div class="default text">Select a Cheese Type</div>
-                   <div class="menu">
+                   <div class="menu" id="cheese-dropdown">
                      <div class="item" value="1" data-value="Blue Cheese"> Blue Cheese</div>
                      <div class="item" value="2"data-value="Gouda"> Gouda</div>
                      <div class="item" value="3"data-value="Mozzarella"> Mozzarella</div>
@@ -208,27 +209,7 @@
               </tr>
             </thead>
             <tbody id='addItemTable-body'>
-              <tr>
-                <th scope="row">1</th>
-                <td>Goa</td>
-                <td>Mozzarella</td>
-                <td>20</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Goa</td>
-                <td>Blue Cheese</td>
-                <td>15</td>
-                <td>40</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>India</td>
-                <td>Gouda</td>
-                <td>24</td>
-                <td>120</td>
-              </tr>
+              <!-- new items get added here -->
             </tbody>
           </table>
             <!-- END of invoice details table -->
@@ -243,8 +224,8 @@
                       (LKR)
                     </div>
                   </div>
-                  <div class="col  h5">
-                    <strong>Rs.10000</strong>
+                  <div id="total-control"class="col  h5">
+                    <strong>Rs.</strong>
                   </div>
                 </div>
               </div>

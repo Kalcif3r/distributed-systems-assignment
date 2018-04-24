@@ -62,6 +62,7 @@ module.exports.routes = {
   'GET   /Invoice/update-view/:invoiceID':            { action: 'invoice/update-view' },
   'POST  /Invoice/update-action':                     { action: 'invoice/update-action' },
   'POST  /Invoice/archive-action':                    { action: 'invoice/archive-action' },
+  'GET   /Invoice/find-all-cheese-for-factory/:factoryID':                    { action: 'invoice/find-all-cheese-for-factory' },
 
 
 
