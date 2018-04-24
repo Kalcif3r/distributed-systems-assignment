@@ -54,6 +54,8 @@ module.exports.routes = {
   'GET   /Inventory/update-view/:inventoryID':        { action: 'inventory/update-view' },
   'POST  /Inventory/update-action':                   { action: 'inventory/update-action' },
   'POST  /Inventory/archive-action':                  { action: 'inventory/archive-action' },
+  // CROSS SERVER ACTION
+  'POST  /Inventory/update-stock-action':             { action: 'inventory/update-stock-action' },
 
   // INVOICE ACTIONS
   'GET   /Invoice':                                   { action: 'invoice/view-all' },
