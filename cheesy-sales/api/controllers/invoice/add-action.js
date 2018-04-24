@@ -4,9 +4,17 @@ module.exports = {
 
   friendlyName: 'Create this invoice',
 
-
   description: 'Creates a invoice and returns to /invoice once it Creates',
 
+  inputs: {
+
+    invoiceItemsArray: {
+      type: 'string',
+      required: true,
+    },
+
+
+  },
 
   exits: {
 
@@ -26,14 +34,15 @@ module.exports = {
     let unirest = require('unirest')
     let flaverr = require('flaverr')
 
-
     // definition of HTTP Request
     function requestToSalesServer( delay ) {
       return new Promise((resolve,reject) => {
         setTimeout(() => {
           unirest.post('http://localhost:1338/Inventory/update-stock-action')
           .headers({'Accept': 'application/json', 'Content-Type': 'application/json', 'authorization': 'CHEESYSTOCK'})
-          .send({})
+          .send({
+            invoiceItems: inputs.invoiceItemsArray
+          })
           .end(response => {
             if( response.statusCode === '500') {
               reject(response.statusCode)
@@ -93,7 +102,6 @@ module.exports = {
       sails.log(err)
       return exits.badRequest()
     }
-
 
 
 
