@@ -47,9 +47,6 @@ module.exports = {
       return err;
     })
 
-    let message = "new record created~!"
-
-
     return exits.success('/Cheese');
 
   }
