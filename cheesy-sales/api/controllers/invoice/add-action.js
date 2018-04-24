@@ -74,7 +74,7 @@ module.exports = {
       sails.log(`total time: ${end - start}ms` )
       sails.log(`---- END of Request ----
 
-`)
+      `)
       return result
     }
 
@@ -103,8 +103,13 @@ module.exports = {
       return exits.badRequest()
     }
 
+    // Begin transaction for Updating the invoiceItems for realsies on this server
 
+    // too tired to think through this. wake me up or give it a go vased on the earlier transaction we made in stock
 
+    } // end of function
+
+    }
 
     // while trying = true
     // if response != ''  send a request
@@ -117,33 +122,3 @@ module.exports = {
 
 
 };
-
-/*
-
-var myAccount = await BankAccount.findOne({ owner: this.req.session.userId })
-.usingConnection(db);
-if (!myAccount) {
-return proceed(new Error('Consistency violation: Database is corrupted-- logged in user record has gone missing'));
-}
-
-
-async.waterfall([
-  function(callback) {
-    callback(null, 'one', 'two');
-  },
-  function(arg1, arg2, callback) {
-    // arg1 now equals 'one' and arg2 now equals 'two'
-    callback(null, 'three');
-  },
-  function(arg1, callback) {
-    // arg1 now equals 'three'
-    callback(null, 'done');
-  }
-], (err, result) => {
-  if(err){
-    //
-  }
-})
-
-
-*/
