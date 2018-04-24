@@ -20,6 +20,8 @@
           <label class='my-label my-2 p-2' for="cheese-edit-price">Cheese Price</label>
           <input required name="cheesePrice" value="<%= cheese.cheesePrice %>" type="text" class="form-control" id="cheese-edit-name" aria-describedby="emailHelp" placeholder="Enter the price">
         </div>
+        <!-- CSRF Token  -->
+        <input type="hidden" name="_csrf" value='<%= _csrf %>'>
         <!-- <div class="form-group">
           <label class='my-label my-2 p-2' for="cheese-edit-isDeleted">Cheese Is Deleted</label>
           <input required name="isDeleted" value="<%= cheese.isDeleted %>" type="text" class="form-control" id="cheese-edit-name" aria-describedby="emailHelp" placeholder="Enter the status">
@@ -27,11 +29,12 @@
         <div class="row container mt-5 mb-3">
           <button type="submit" class="btn btn-warning">Update</button>
 
-
       </form>
       <form action="/cheese/archive-action" method="POST">
         <input name="id" value="<%= cheese.id %>" type="hidden" class="form-control" id="submitforarchive">
         <button type="submit" class="btn btn-danger ml-1">Archive Record</button>
+        <!-- CSRF Token  -->
+        <input type="hidden" name="_csrf" value='<%= _csrf %>'>
       </form>
     </div>
     </div>

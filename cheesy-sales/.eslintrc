@@ -38,6 +38,7 @@
     "sails": true,
     "_": true,
     "async": true,
+    "unirest": true,
 
     // Models:
     "User": true,
