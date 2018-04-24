@@ -35,24 +35,21 @@
         <!-- CSRF Token  -->
         <!-- <input type="hidden" name="_csrf" value='<%= _csrf %>'> -->
 
-        <div class="mt-5 mb-3">
-          <button type="submit" class="btn btn-primary">Update</button>
+        <div class="row container mt-5 mb-3">
+          <button type="submit" class="btn btn-warning">Update</button>
 
-        </div>
-
-      <!-- </div> -->
-
-    </form>
-    <form action="/Inventory/archive-action" method="POST">
-      <input name="id" value="<%= inventory.id %>" type="hidden" class="form-control">
-      <button type="submit" class="btn btn-danger">Archive Record</button>
-    <!-- CSRF Token  -->
-    <!-- <input type="hidden" name="_csrf" value='<%= _csrf %>'> -->
+      </form>
+      <form action="/inventory/archive-action" method="POST">
+        <input name="id" value="<%= inventory.id %>" type="hidden" class="form-control" id="submitforarchive">
+        <button type="submit" class="btn btn-danger ml-1">Archive Record</button>
+        <!-- CSRF Token  -->
+        <input type="hidden" name="_csrf" value='<%= _csrf %>'>
+      </form>
     </div>
-    </form>
     </div>
   <!-- END of card -->
 
+</div>
 </div>
 
 <!-- START of card -->
