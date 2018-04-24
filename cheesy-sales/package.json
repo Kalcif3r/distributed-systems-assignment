@@ -11,6 +11,7 @@
     "connect-redis": "3.2.0",
     "flaverr": "^1.9.1",
     "lodash": "3.10.1",
+    "lusca": "^1.6.0",
     "sails": "^1.0.0-46",
     "sails-hook-apianalytics": "^2.0.0",
     "sails-hook-organics": "^0.13.0",

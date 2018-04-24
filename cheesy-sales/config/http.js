@@ -28,6 +28,14 @@ module.exports.http = {
     * (This Sails app's routes are handled by the "router" middleware below.)  *
     *                                                                          *
     ***************************************************************************/
+    //One simple way to help prevent clickjacking attacks is to enable the X-FRAME-OPTIONS header.
+  //   xframe: require('lusca').xframe('ALLOW-FROM uri'),
+  // // ...
+  // order: [
+  //   // ...
+  //   'xframe'
+  //   // ...
+  // ]
 
     // order: [
     //   'cookieParser',
