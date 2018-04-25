@@ -56,6 +56,7 @@ module.exports.routes = {
   'POST  /Inventory/archive-action':                  { action: 'inventory/archive-action' },
   // CROSS SERVER ACTION
   'POST  /Inventory/update-stock-action':             { action: 'inventory/update-stock-action' },
+  'GET   /Inventory/return-all-json':                   { action: 'inventory/return-all-json' },
 
   // INVOICE ACTIONS
   'GET   /Invoice':                                   { action: 'invoice/view-all' },

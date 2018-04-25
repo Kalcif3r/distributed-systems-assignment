@@ -9,7 +9,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/inventory/view-all',
+      statusCode: '200',
     }
 
   },
@@ -29,24 +29,11 @@ module.exports = {
       return err;
     })
 
-    // return all factories and cheeses for the dropdowns to process
-    let factories = await Factory
-    .find({
-      where: {isDeleted: false}
-    })
-
-    let cheeses = await Cheese
-    .find({
-      where: {isDeleted: false}
-    })
-
-    sails.log('cheeses : ',cheeses)
+    sails.log('inventory : ',inventory)
 
     // return to view
     return exits.success({
       inventory: inventory,
-      factories: factories,
-      cheeses: cheeses,
     });
 
   }

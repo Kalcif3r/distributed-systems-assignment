@@ -42,10 +42,32 @@ module.exports = {
       err.message = 'Uh oh: '+ err.message
       return err;
     })
-    
+
+    //select all invoices
+    let invoices = await Invoice.find({
+      where:{ isDeleted : false }
+    })
+    .populate('invoiceItemID')
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
+
+    let cheeses = await Cheese.find({
+      where:{ isDeleted : false }
+    })
+    .intercept((err)=>{
+      err.message = 'Uh oh: '+ err.message
+      return err;
+    })
+
+    console.log('plog -- invoices',JSON.stringify(invoices))
+
+
     return exits.success({
       factories:factories,
-
+      invoices: invoices,
+      cheeses: cheeses,
     });
 
   }
