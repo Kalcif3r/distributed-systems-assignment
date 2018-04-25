@@ -6,70 +6,65 @@
   </div>
 
 <!-- START of card -->
-  <div class="card">
-  <div class="card-body">
-    <div class="invoice-heading ">
-      <h2>invoiceID #</h2>
-      <div class="d-flex align-items-center mb-3 ml-3">
-        <p>20-04-2018</p>
+
+  <% invoices.forEach( invoice => { %>
+    <div class="card">
+    <div class="card-body">
+      <div class="invoice-heading ">
+        <h2>invoiceID #<%=invoice.id%></h2>
+        <div class="d-flex align-items-center mb-3 ml-3">
+          <p></p>
+        </div>
       </div>
-      <a class='btn-invoice-edit'href="/invoice/update-view/1">
-        <button class="btn btn-primary  float-right mb-3" type="button" name="button">Edit Invoice</button>
-      </a>
-    </div>
-    <!-- START of invoice details table -->
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Cheese Name</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Price</th>
-          <th scope="col">Subtotal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mozzarella</td>
-          <td>2</td>
-          <td>20</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Blue Cheese</td>
-          <td>2</td>
-          <td>15</td>
-          <td>40</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Gouda</td>
-          <td>3</td>
-          <td>24</td>
-          <td>120</td>
-        </tr>
-      </tbody>
-    </table>
-      <!-- END of invoice details table -->
-      <div class="container">
-        <div class="float-right">
-          <div class="totally row">
-            <div class="col h5 mr-3">
-              <div class="row">
-                <strong>Total</strong>
+      <!-- START of invoice details table -->
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Cheese Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% invoice.invoiceItemID.forEach( invoiceItem => { %>
+            <tr>
+              <td></td>
+              <td><% for(let i = 0; i< cheeses.length; i++) {
+                if ( cheeses[i].id == invoiceItem.cheeseID ) { %>
+                  <%-cheeses[i].cheeseName%>
+                <%}
+              } %></td>
+              <td><%= invoiceItem.quantity %></td>
+              <td><%= invoiceItem.price %></td>
+              <td><%= invoiceItem.price * invoiceItem.quantity %></td>
+            </tr>
+
+          <% }) %>
+        </tbody>
+      </table>
+        <!-- END of invoice details table -->
+        <div class="container">
+          <div class="float-right">
+            <div class="totally row">
+              <div class="col h5 mr-3">
+                <div class="row">
+                  <strong>Total</strong>
+                </div>
+                <div class="row">
+                  (LKR)
+                </div>
               </div>
-              <div class="row">
-                (LKR)
+              <div class="col  h5">
+                <strong>Rs.<%- invoice.total%></strong>
               </div>
-            </div>
-            <div class="col  h5">
-              <strong>Rs.10000</strong>
             </div>
           </div>
         </div>
-      </div>
+
+  <% }) %>
+
     <!-- END of card body -->
   </div>
 </div>
@@ -104,9 +99,9 @@
                    <i class="dropdown icon"></i>
                    <div class="default text">Select a Factory</div>
                    <div class="menu">
-                     <div class="item" value="1" data-value="Goa"> Goa</div>
-                     <div class="item" value="2" data-value="India"> India</div>
-                     <div class="item" value="3" data-value="Venezuela"> Venezuela</div>
+                     <% factories.forEach( factory => { %>
+                       <div onclick="retrieveCheese(<%=factory.id%>)"class="item" value="<%=factory.id%>" data-value="<%=factory.id%>"> <%=factory.factoryLocation%></div>
+                     <% }) %>
                    </div>
                  </div>
                </div>
@@ -122,10 +117,8 @@
                    <input required value="" type="hidden" name="cheeseID" id="invoice-view-cheeseID" >
                    <i class="dropdown icon"></i>
                    <div class="default text">Select a Cheese Type</div>
-                   <div class="menu">
-                     <div class="item" value="1" data-value="Blue Cheese"> Blue Cheese</div>
-                     <div class="item" value="2"data-value="Gouda"> Gouda</div>
-                     <div class="item" value="3"data-value="Mozzarella"> Mozzarella</div>
+                   <div class="menu" id="cheese-dropdown">
+
                    </div>
                  </div>
 
@@ -208,27 +201,7 @@
               </tr>
             </thead>
             <tbody id='addItemTable-body'>
-              <tr>
-                <th scope="row">1</th>
-                <td>Goa</td>
-                <td>Mozzarella</td>
-                <td>20</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Goa</td>
-                <td>Blue Cheese</td>
-                <td>15</td>
-                <td>40</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>India</td>
-                <td>Gouda</td>
-                <td>24</td>
-                <td>120</td>
-              </tr>
+              <!-- new items get added here -->
             </tbody>
           </table>
             <!-- END of invoice details table -->
@@ -243,8 +216,8 @@
                       (LKR)
                     </div>
                   </div>
-                  <div class="col  h5">
-                    <strong>Rs.10000</strong>
+                  <div id="total-control"class="col  h5">
+                    <strong>Rs.</strong>
                   </div>
                 </div>
               </div>
@@ -258,6 +231,10 @@
           <button type="submit" class="btn btn-success">Submit New Record</button>
           <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Close</button>
         </div>
+
+        <!-- CSRF Token  -->
+        <input type="hidden" name="_csrf" value='<%= _csrf %>'>
+
     </form>
   </div>
 </div>

@@ -47,6 +47,7 @@ module.exports.routes = {
   'GET   /Factory/update-view/:factoryID':            { action: 'factory/update-view' },
   'POST  /Factory/update-action':                     { action: 'factory/update-action' },
   'POST  /Factory/archive-action':                    { action: 'factory/archive-action' },
+  'POST  /Factory/add-user-to-factory-action':        { action: 'factory/add-user-to-factory-action' },
 
   // INVENTORY ACTIONS
   'GET   /Inventory':                                 { action: 'inventory/view-all' },
@@ -54,9 +55,6 @@ module.exports.routes = {
   'GET   /Inventory/update-view/:inventoryID':        { action: 'inventory/update-view' },
   'POST  /Inventory/update-action':                   { action: 'inventory/update-action' },
   'POST  /Inventory/archive-action':                  { action: 'inventory/archive-action' },
-  // CROSS SERVER ACTION
-  'POST  /Inventory/update-stock-action':             { action: 'inventory/update-stock-action' },
-  'GET   /Inventory/return-all-json':                   { action: 'inventory/return-all-json' },
 
   // INVOICE ACTIONS
   'GET   /Invoice':                                   { action: 'invoice/view-all' },
@@ -64,6 +62,7 @@ module.exports.routes = {
   'GET   /Invoice/update-view/:invoiceID':            { action: 'invoice/update-view' },
   'POST  /Invoice/update-action':                     { action: 'invoice/update-action' },
   'POST  /Invoice/archive-action':                    { action: 'invoice/archive-action' },
+  'GET   /Invoice/find-all-cheese-for-factory/:factoryID':                    { action: 'invoice/find-all-cheese-for-factory' },
 
 
 

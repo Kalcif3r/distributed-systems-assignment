@@ -1,6 +1,6 @@
 module.exports.keys = {
   accessToken: {
-    self: 'CHEESYSTOCK',
+    self: process.env.ACCESS_TOKEN,
     orders: process.env.ORDERS_ACCESS_TOKEN,
     payments: process.env.PAYMENTS_ACCESS_TOKEN,
     products: process.env.PRODUCTS_ACCESS_TOKEN,

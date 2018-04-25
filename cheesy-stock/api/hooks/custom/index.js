@@ -150,7 +150,7 @@ will be disabled and/or hidden in the UI.
             // Otherwise, look up the logged-in user.
             var loggedInUser = await User.findOne({
               id: req.session.userId
-            });
+            }).populate('factoryID');
 
             // If the logged-in user has gone missing, log a warning,
             // wipe the user id from the requesting user agent's session,
@@ -229,7 +229,7 @@ will be disabled and/or hidden in the UI.
             else if (req.method === 'POST') {
               var loggedInUser = await User.findOne({
                 id: req.session.userId
-              });
+              }).populate('factoryID');
               var sanitizedUser = _.extend({}, loggedInUser);
               for (let attrName in User.attributes) {
                 if (User.attributes[attrName].protect) {

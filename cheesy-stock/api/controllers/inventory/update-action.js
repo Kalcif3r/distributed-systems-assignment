@@ -12,15 +12,15 @@ module.exports = {
       required: true,
     },
 
-    factoryID: {
-      type: 'number',
-      required: true,
-    },
-
-    inventoryID: {
-      type: 'number',
-      required: true,
-    },
+    // factoryID: {
+    //   type: 'number',
+    //   required: false,
+    // },
+    //
+    // inventoryID: {
+    //   type: 'number',
+    //   required: false,
+    // },
 
     stock: {
       type: 'number',
@@ -43,7 +43,9 @@ module.exports = {
     // update inventory
     await Inventory
     .update(inputs.id)
-    .set(inputs)
+    .set({
+      stock: inputs.stock
+    })
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;
