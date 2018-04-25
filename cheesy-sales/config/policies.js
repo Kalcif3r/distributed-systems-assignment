@@ -12,6 +12,11 @@ module.exports.policies = {
 
   '*': 'is-logged-in',
 
+  'Inventory/archive-action' : ['is-manager', 'is-super-admin'],
+  'Factory/archive-action' : ['is-manager', 'is-super-admin'],
+  'Cheese/archive-action' : ['is-manager', 'is-super-admin'],
+  'Invoice/archive-action' : ['is-manager', 'is-super-admin'],
+
   // Bypass the `is-logged-in` policy for:
   'entrance/*': true,
   'account/logout': true,
