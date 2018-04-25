@@ -5,8 +5,13 @@
   <div class="card">
   <div class="card-body">
     <div class="d-flex justify-content-end">
-      <button class="btn btn-success mb-3 " data-toggle="modal" data-target="#add-factory" type="button" name="button">Add new factory</button>
-      <button class="btn btn-success mb-3 ml-4" data-toggle="modal" data-target="#add-users-to-factory" type="button" name="button">Add users to factory</button>
+      <% if(me.isSuperAdmin || me.isManager) { %>
+        <button class="btn btn-success mb-3 " data-toggle="modal" data-target="#add-factory" type="button" name="button">Add new factory</button>
+        <button class="btn btn-success mb-3 ml-4" data-toggle="modal" data-target="#add-users-to-factory" type="button" name="button">Add users to factory</button>
+      <% } else { %>
+        <button class="btn btn-success mb-3 " data-toggle="modal" data-target="#add-factory" type="button" name="button" disabled>Add new factory</button>
+        <button class="btn btn-success mb-3 ml-4" data-toggle="modal" data-target="#add-users-to-factory" type="button" name="button" disabled>Add users to factory</button>
+      <% } %>
     </div>
     <table class="table table-hover">
       <thead>
@@ -21,7 +26,11 @@
           <tr>
             <td><%- factory.factoryLocation %> </td>
             <td><%- factory.factoryCountry %> </td>
-            <td><a href="/factory/update-view/<%= factory.id %>"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+            <% if(me.isSuperAdmin || me.isManager) { %>
+              <td><a href="/factory/update-view/<%= factory.id %>"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
+            <% } else { %>
+              <td><a href="/factory/update-view/<%= factory.id %>"><button class="btn btn-primary  float-right" type="button" name="button" disabled>Edit</button></a></td>
+            <% } %>
           </tr>
         <% }) %>
 
