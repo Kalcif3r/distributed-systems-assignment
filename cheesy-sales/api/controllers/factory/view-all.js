@@ -33,7 +33,6 @@ module.exports = {
     .find({
       where:{
         isDeleted:false,
-        id: factoryIDArray
       }
     })
     .intercept((err)=>{
