@@ -19,7 +19,7 @@ module.exports = {
   exits: {
 
     success: {
-      statusCode: '200',
+      viewTemplatePath: 'pages/invoice/view-all',
     },
 
     badRequest: {
@@ -138,9 +138,9 @@ module.exports = {
             sails.log('inside of transaction')
             let idArray = []
             let result
-            let total =0
+            let total = 0
             sails.log('inside of await')
-            for(let i =0; i< invoiceItems.length;i++){
+            for(let i =0; i< invoiceItems.length; i++){
               console.log('index is:',invoiceItems[i])
               result = await addInvoiceItem(db,0,invoiceItems[i])
               console.log('plog --result of await individual invoice Item ',result)
