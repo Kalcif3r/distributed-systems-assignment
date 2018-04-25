@@ -33,7 +33,7 @@ module.exports = {
     // imports
     let unirest = require('unirest')
     let flaverr = require('flaverr')
-  
+
     // definition of HTTP Request
     function requestToSalesServer( delay ) {
       return new Promise((resolve,reject) => {
@@ -115,7 +115,7 @@ module.exports = {
           console.log('newItem.id: ',newItem.id )
 
           if ( newItem.id ) {
-            resolve('created')
+            resolve({id: newItem.id, message: 'created', total: newItem.quantity * newItem.price})
           } else {
             reject('failed')
           }
@@ -136,8 +136,9 @@ module.exports = {
           await sails.getDatastore()
           .transaction(async (db, proceed)=> {
             sails.log('inside of transaction')
-
+            let idArray = []
             let result
+            let total =0
             sails.log('inside of await')
             for(let i =0; i< invoiceItems.length;i++){
               console.log('index is:',invoiceItems[i])
@@ -147,7 +148,21 @@ module.exports = {
                 console.log( flaverr('E_CREATE_FAILURE', new Error('ERR: the create for invoice items failed ')) )
                 return reject('failed')
               }
+              idArray.push(result.id)
+              total += result.total
             }
+
+            let newInvoice = await Invoice.create({
+              date: new Date().getTime(),
+              total: total
+            })
+            .usingConnection(db)
+            .fetch()
+
+            await Invoice.addToCollection(newInvoice.id,'invoiceItemID')
+            .members(idArray)
+            .usingConnection(db)
+
             return proceed()
 
           })
