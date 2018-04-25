@@ -33,7 +33,7 @@ module.exports = {
     // imports
     let unirest = require('unirest')
     let flaverr = require('flaverr')
-
+  
     // definition of HTTP Request
     function requestToSalesServer( delay ) {
       return new Promise((resolve,reject) => {
@@ -104,12 +104,94 @@ module.exports = {
     }
 
     // Begin transaction for Updating the invoiceItems for realsies on this server
+    async function addInvoiceItem( db, delay, invoiceItem ) {
+      return new Promise((resolve,reject) => {
+        setTimeout( async () => {
+          sails.log(`at the start of individual create`)
+          let newItem = await InvoiceItems.create(invoiceItem)
+          .usingConnection(db)
+          .fetch()
 
-    // too tired to think through this. wake me up or give it a go vased on the earlier transaction we made in stock
+          console.log('newItem.id: ',newItem.id )
 
-    } // end of function
+          if ( newItem.id ) {
+            resolve('created')
+          } else {
+            reject('failed')
+          }
 
+          sails.log(`at the end of individual create
+
+            `)
+        }, delay);
+      });
     }
+
+    async function addInvoiceItems( delay, invoiceItems ) {
+      return new Promise((resolve,reject) => {
+        setTimeout(async () => {
+
+          let start = new Date().getTime()
+          sails.log('start of transaction')
+          await sails.getDatastore()
+          .transaction(async (db, proceed)=> {
+            sails.log('inside of transaction')
+
+            let result
+            sails.log('inside of await')
+            for(let i =0; i< invoiceItems.length;i++){
+              console.log('index is:',invoiceItems[i])
+              result = await addInvoiceItem(db,0,invoiceItems[i])
+              console.log('plog --result of await individual invoice Item ',result)
+              if(result === 'failed'){
+                console.log( flaverr('E_CREATE_FAILURE', new Error('ERR: the create for invoice items failed ')) )
+                return reject('failed')
+              }
+            }
+            return proceed()
+
+          })
+          let end = new Date().getTime()
+
+          sails.log('end of transaction time:', end-start)
+          return resolve('succeeded-all')
+
+
+        }, delay);
+      });
+    }
+
+    try {
+
+      let invoiceItems = JSON.parse(inputs.invoiceItemsArray)
+      console.log('invoiceItems',invoiceItems)
+      console.log('start',new Date().getTime())
+      for(let retry = true, delay = 30, result = ''; // initialization
+        retry === true; // condition
+      ) { // iterator
+
+        console.log('start of major transaction')
+        result = await addInvoiceItems( delay, invoiceItems )
+        console.log('result: ',result)
+        console.log('end of major transaction')
+
+        if( result === 'failed' ) {
+          console.log( flaverr('E_SUPER_FAILED', new Error('ERR: the create for invoice items failed thrice')) )
+        } else if ( result === 'succeeded-all') {
+          console.log('all is done')
+          retry = false
+        }
+      }
+
+
+      console.log('end',new Date().getTime())
+    } catch ( err ) {
+      if (err) {
+        console.log( err )
+      }
+    }
+
+
 
     // while trying = true
     // if response != ''  send a request
