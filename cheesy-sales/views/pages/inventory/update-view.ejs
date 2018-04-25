@@ -10,11 +10,18 @@
         <input name="id" value="<%= inventory.id %>" type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
 
         <div class="form-group">
+          <label for="inventory-view-factoryID">Country</label>
+
+          <input required disabled value="<%= inventory.factoryID.factoryCountry %>" type="text" class="form-control"  id="inventory-view-factoryID" >
+
+        </div>
+
+        <div class="form-group">
           <label for="inventory-view-factoryID">Factory</label>
 
-            <input required disabled value="<%= inventory.factoryID.factoryLocation %>" type="text" class="form-control"  id="inventory-view-factoryID" >
+          <input required disabled value="<%= inventory.factoryID.factoryLocation %>" type="text" class="form-control"  id="inventory-view-factoryID" >
 
-          </div>
+        </div>
 
         <!-- END of Searchable Dropdown -->
 
