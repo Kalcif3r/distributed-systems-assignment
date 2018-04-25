@@ -1,3 +1,5 @@
+var unirest = require('unirest');
+
 module.exports = {
 
   friendlyName: 'Create this cheese',

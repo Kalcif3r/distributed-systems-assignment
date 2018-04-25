@@ -26,15 +26,18 @@ module.exports = {
   fn: async function (inputs, exits) {
 
     // archive the object
-    await Inventory
+    let blah = await Inventory
     .update(inputs.id)
     .set({
       isDeleted: true,
     })
+    .fetch()
     .intercept((err)=>{
       err.message = 'Uh oh: '+ err.message
       return err;
     })
+
+  
 
     //Return to view-all
     return exits.success('/Inventory')

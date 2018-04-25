@@ -10,22 +10,18 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Cheese Name</th>
           <th scope="col">Description</th>
           <th scope="col">Cheese Price</th>
-          <!-- <th scope="col">is Deleted?</th> -->
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <% cheeses.forEach( cheese => { %>
           <tr>
-            <th scope="row"><%= cheese.id %></th>
             <td><%- cheese.cheeseName %> </td>
             <td><%- cheese.cheeseDescription %> </td>
             <td><%- cheese.cheesePrice %> </td>
-            <!-- <td><%- cheese.isDeleted %> </td> -->
             <td><a href="/cheese/update-view/<%= cheese.id %>"><button class="btn btn-primary  float-right" type="button" name="button">Edit</button></a></td>
           </tr>
         <% }) %>
